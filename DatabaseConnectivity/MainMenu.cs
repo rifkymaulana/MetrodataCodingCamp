@@ -98,6 +98,7 @@ namespace DatabaseConnectivity
             Console.Write(" Plase select menu: ");
             try
             {
+                var LINQ = new LINQ();
                 int inputMenu = Convert.ToInt32(Console.ReadLine());
                 switch (inputMenu)
                 {
@@ -148,8 +149,11 @@ namespace DatabaseConnectivity
                         try
                         {
                             int limit = Convert.ToInt32(Console.ReadLine());
-                            var LINQ = new LINQ();
                             LINQ.GetEmployees(limit);
+                            Console.Write("Click any key for continue...");
+                            Console.ReadKey();
+                            this.CrudMenu();
+                            break;
                         }
                         catch (Exception e)
                         {
@@ -158,8 +162,14 @@ namespace DatabaseConnectivity
                             Console.ReadKey();
                             this.CrudMenu();
                         }
+
                         break;
                     case 9:
+                        Console.Clear();
+                        LINQ.GetDepartments();
+                        Console.Write("Click any key for continue...");
+                        Console.ReadKey();
+                        this.CrudMenu();
                         break;
                     case 0:
                         Console.Clear();
@@ -285,19 +295,13 @@ namespace DatabaseConnectivity
 
         public void PrintRegions()
         {
-            region.GetAllRegions().ForEach(e =>
-            {
-                Console.WriteLine($"id = {e.id}, name = {e.name}");
-            });
+            region.GetAllRegions().ForEach(e => { Console.WriteLine($"id = {e.id}, name = {e.name}"); });
         }
 
 
         public void PrintRegionById(int id)
         {
-            region.GetRegionById(id).ForEach(e =>
-            {
-                Console.WriteLine($"id = {e.id}, name = {e.name}");
-            });
+            region.GetRegionById(id).ForEach(e => { Console.WriteLine($"id = {e.id}, name = {e.name}"); });
         }
 
         public void ShowRegionById()
@@ -312,7 +316,6 @@ namespace DatabaseConnectivity
                 Console.Write("Click any key for continue...");
                 Console.ReadKey();
                 this.CrudRegion();
-
             }
             catch (Exception)
             {
@@ -360,7 +363,6 @@ namespace DatabaseConnectivity
                 Console.Write("Click any key for continue...");
                 Console.ReadKey();
                 this.CrudCountry();
-
             }
             catch (Exception)
             {
@@ -376,7 +378,8 @@ namespace DatabaseConnectivity
         {
             location.GetAllLocations().ForEach(e =>
             {
-                Console.WriteLine($"id = {e.id}, street address = {e.streetAddress}, postal code = {e.postalCode}, city = {e.city}, state province = {e.stateProvince}, country id = {e.countryId}");
+                Console.WriteLine(
+                    $"id = {e.id}, street address = {e.streetAddress}, postal code = {e.postalCode}, city = {e.city}, state province = {e.stateProvince}, country id = {e.countryId}");
             });
         }
 
@@ -385,7 +388,8 @@ namespace DatabaseConnectivity
         {
             department.GetAllDepartments().ForEach(e =>
             {
-                Console.WriteLine($"id = {e.id}, name = {e.name}, location id = {e.locationId}, manager id = {e.managerId}, ");
+                Console.WriteLine(
+                    $"id = {e.id}, name = {e.name}, location id = {e.locationId}, manager id = {e.managerId}, ");
             });
         }
 
@@ -394,7 +398,8 @@ namespace DatabaseConnectivity
         {
             employee.GetAllEmployees().ForEach(e =>
             {
-                Console.WriteLine($"id = {e.id}, name = {e.firstName} {e.lastName}, email = {e.email}, phone number = {e.phoneNumber}, hire date = {e.hireDate}, salary = {e.salary}");
+                Console.WriteLine(
+                    $"id = {e.id}, name = {e.firstName} {e.lastName}, email = {e.email}, phone number = {e.phoneNumber}, hire date = {e.hireDate}, salary = {e.salary}");
             });
         }
 
@@ -403,7 +408,8 @@ namespace DatabaseConnectivity
         {
             history.GetAllHistories().ForEach(e =>
             {
-                Console.WriteLine($"start date = {e.startDate}, end date = {e.endDate}, employee id = {e.employeeId}, department id = {e.departmentId}, job id = {e.jobId}");
+                Console.WriteLine(
+                    $"start date = {e.startDate}, end date = {e.endDate}, employee id = {e.employeeId}, department id = {e.departmentId}, job id = {e.jobId}");
             });
         }
 
@@ -412,7 +418,8 @@ namespace DatabaseConnectivity
         {
             job.GetAllJobs().ForEach(e =>
             {
-                Console.WriteLine($"id = {e.id}, title = {e.title}, min salary = {e.minSalary}, max salary = {e.maxSalary}");
+                Console.WriteLine(
+                    $"id = {e.id}, title = {e.title}, min salary = {e.minSalary}, max salary = {e.maxSalary}");
             });
         }
     }

@@ -44,4 +44,36 @@ public class LINQ
             Console.WriteLine();
         }
     }
+    
+    /*SELECT d.name AS department_name, COUNT(e.department_id) AS total_employee, MIN(e.salary) AS min_salary, MAX(e.salary) AS max_salary, AVG(e.salary) AS average_salary
+    FROM tb_m_employees e RIGHT JOIN tb_m_departments d ON e.department_id = d.id
+        GROUP BY d.name, e.department_id
+        HAVING COUNT(e.department_id) > 3;*/
+
+    public void GetDepartments()
+    {
+        var employees = (from e in employee.GetAllEmployees()
+            join d in department.GetAllDepartments() on e.departmentId equals d.id
+            group e by new {d.name, e.departmentId}
+            into g
+            where g.Count() > 3
+            select new
+            {
+                DepartmentName = g.Key.name,
+                TotalEmployee = g.Count(),
+                MinSalary = g.Min(e => e.salary),
+                MaxSalary = g.Max(e => e.salary),
+                AverageSalary = g.Average(e => e.salary)
+            }).ToList();
+
+        foreach (var employee in employees)
+        {
+            Console.WriteLine($"Department Name: {employee.DepartmentName}");
+            Console.WriteLine($"Total Employee: {employee.TotalEmployee}");
+            Console.WriteLine($"Min Salary: {employee.MinSalary}");
+            Console.WriteLine($"Max Salary: {employee.MaxSalary}");
+            Console.WriteLine($"Average Salary: {employee.AverageSalary}");
+            Console.WriteLine();
+        }
+    }
 }
