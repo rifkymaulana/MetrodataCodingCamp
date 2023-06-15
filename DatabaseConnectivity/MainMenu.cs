@@ -93,7 +93,8 @@ namespace DatabaseConnectivity
             Console.WriteLine(" 5. Show Employee");
             Console.WriteLine(" 6. Show History");
             Console.WriteLine(" 7. Show Job");
-            Console.WriteLine(" 9. Logout");
+            Console.WriteLine(" 8. LINQ Show Employees");
+            Console.WriteLine(" 0. Logout");
             Console.Write(" Plase select menu: ");
             try
             {
@@ -141,7 +142,26 @@ namespace DatabaseConnectivity
                         Console.ReadKey();
                         this.CrudMenu();
                         break;
+                    case 8:
+                        Console.Clear();
+                        Console.Write("Input limit: ");
+                        try
+                        {
+                            int limit = Convert.ToInt32(Console.ReadLine());
+                            var LINQ = new LINQ();
+                            LINQ.GetEmployees(limit);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Please, input only number not alphabet");
+                            Console.Write("Click any key for continue...");
+                            Console.ReadKey();
+                            this.CrudMenu();
+                        }
+                        break;
                     case 9:
+                        break;
+                    case 0:
                         Console.Clear();
                         Console.WriteLine("You're successfully logout");
                         Console.Write("Click any key for continue...");

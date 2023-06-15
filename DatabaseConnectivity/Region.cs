@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseConnectivity
 {
-    class Region
+    public class Region
     {
         public int id { get; set; }
         public string? name { get; set; }

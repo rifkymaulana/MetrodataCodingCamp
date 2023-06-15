@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseConnectivity
 {
-    internal class Employee
+    public class Employee
     {
         public int id { get; set; }
         public string firstName { get; set; } = string.Empty;
@@ -21,7 +21,6 @@ namespace DatabaseConnectivity
         public int managerId { get; set; }
         public string jobId { get; set; } = string.Empty;
         public int departmentId { get; set; }
-
 
         public List<Employee> GetAllEmployees()
         {
@@ -48,10 +47,10 @@ namespace DatabaseConnectivity
                         employee.phoneNumber = reader.GetString(4);
                         employee.hireDate = reader.GetDateTime(5);
                         employee.salary = reader.GetInt32(6);
-                        employee.commisionPct = reader.GetDecimal(7);
-                        employee.managerId = reader.GetInt32(8);
-                        employee.jobId = reader.GetString(9);
-                        employee.departmentId = reader.GetInt32(10);
+                        employee.commisionPct = reader.IsDBNull(7) ? 0.0m : reader.GetDecimal(7);
+                        employee.managerId = reader.IsDBNull(8) ? 0 : reader.GetInt32(8);
+                        employee.jobId = reader.IsDBNull(9) ? "" : reader.GetString(9);
+                        employee.departmentId = reader.IsDBNull(10) ? 0 : reader.GetInt32(10);
                         employee.password = $"{employee.id}{employee.jobId}";
 
                         employees.Add(employee);

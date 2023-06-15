@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseConnectivity
 {
-    internal class Job
+    public class Job
     {
         public string id { get; set; } = string.Empty;
         public string title { get; set; } = string.Empty;

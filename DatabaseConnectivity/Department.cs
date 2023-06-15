@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseConnectivity
 {
-    class Department
+    public class Department
     {
         public int id { get; set; }
         public string name { get; set; } = string.Empty;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseConnectivity
 {
-    class Location
+    public class Location
     {
         public int id { get; set; }
         public string streetAddress { get; set; } = string.Empty;
@@ -39,7 +39,8 @@ namespace DatabaseConnectivity
                         location.streetAddress = reader.GetString(1);
                         location.postalCode = reader.GetString(2);
                         location.city = reader.GetString(3);
-                        location.countryId = reader.GetString(4);
+                        location.stateProvince = reader.IsDBNull(4) ? "" : reader.GetString(4);
+                        location.countryId = reader.GetString(5);
 
                         locations.Add(location);
                     }

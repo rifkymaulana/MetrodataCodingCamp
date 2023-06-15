@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseConnectivity
 {
-    class History
+    public class History
     {
         public DateTime startDate { get; set; }
         public int employeeId { get; set; }
