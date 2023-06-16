@@ -1,6 +1,6 @@
 ﻿namespace DatabaseConnectivity;
 
-public class LINQ
+public class Linq
 {
     protected Region region = new Region();
     protected Country country = new Country();

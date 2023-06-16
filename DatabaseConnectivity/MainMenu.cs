@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DatabaseConnectivity
+﻿namespace DatabaseConnectivity
 {
     class MainMenu
     {
-        protected Region region = new Region();
-        protected Country country = new Country();
-        protected Location location = new Location();
-        protected Employee employee = new Employee();
-        protected Department department = new Department();
-        protected Job job = new Job();
-        protected History history = new History();
+        Region _region = new Region();
+        Country _country = new Country();
+        Location _location = new Location();
+        Employee _employee = new Employee();
+        Department _department = new Department();
+        Job _job = new Job();
+        History _history = new History();
 
 
         public void Menu()
@@ -89,16 +83,17 @@ namespace DatabaseConnectivity
             Console.WriteLine(" 1. Crud Region");
             Console.WriteLine(" 2. Crud Country");
             Console.WriteLine(" 3. Show Location");
-            Console.WriteLine(" 4. Show Deparment");
+            Console.WriteLine(" 4. Show Department");
             Console.WriteLine(" 5. Show Employee");
             Console.WriteLine(" 6. Show History");
             Console.WriteLine(" 7. Show Job");
             Console.WriteLine(" 8. LINQ Show Employees");
+            Console.WriteLine(" 9. LINQ Show Departments");
             Console.WriteLine(" 0. Logout");
-            Console.Write(" Plase select menu: ");
+            Console.Write(" Please select menu: ");
             try
             {
-                var LINQ = new LINQ();
+                var LINQ = new Linq();
                 int inputMenu = Convert.ToInt32(Console.ReadLine());
                 switch (inputMenu)
                 {
@@ -153,9 +148,8 @@ namespace DatabaseConnectivity
                             Console.Write("Click any key for continue...");
                             Console.ReadKey();
                             this.CrudMenu();
-                            break;
                         }
-                        catch (Exception e)
+                        catch (Exception)
                         {
                             Console.WriteLine("Please, input only number not alphabet");
                             Console.Write("Click any key for continue...");
@@ -295,13 +289,13 @@ namespace DatabaseConnectivity
 
         public void PrintRegions()
         {
-            region.GetAllRegions().ForEach(e => { Console.WriteLine($"id = {e.id}, name = {e.name}"); });
+            _region.GetAllRegions().ForEach(e => { Console.WriteLine($"id = {e.id}, name = {e.name}"); });
         }
 
 
         public void PrintRegionById(int id)
         {
-            region.GetRegionById(id).ForEach(e => { Console.WriteLine($"id = {e.id}, name = {e.name}"); });
+            _region.GetRegionById(id).ForEach(e => { Console.WriteLine($"id = {e.id}, name = {e.name}"); });
         }
 
         public void ShowRegionById()
@@ -329,7 +323,7 @@ namespace DatabaseConnectivity
 
         public void PrintCoutries()
         {
-            country.GetAllCountries().ForEach(e =>
+            _country.GetAllCountries().ForEach(e =>
             {
                 Console.WriteLine($"id = {e.id}");
                 Console.WriteLine($"name = {e.name}");
@@ -341,7 +335,7 @@ namespace DatabaseConnectivity
 
         public void PrintCountryById(string id)
         {
-            country.GetCountryById(id).ForEach(e =>
+            _country.GetCountryById(id).ForEach(e =>
             {
                 Console.WriteLine($"id = {e.id}");
                 Console.WriteLine($"name = {e.name}");
@@ -376,7 +370,7 @@ namespace DatabaseConnectivity
 
         public void PrintLocations()
         {
-            location.GetAllLocations().ForEach(e =>
+            _location.GetAllLocations().ForEach(e =>
             {
                 Console.WriteLine(
                     $"id = {e.id}, street address = {e.streetAddress}, postal code = {e.postalCode}, city = {e.city}, state province = {e.stateProvince}, country id = {e.countryId}");
@@ -386,7 +380,7 @@ namespace DatabaseConnectivity
 
         public void PrintDepartments()
         {
-            department.GetAllDepartments().ForEach(e =>
+            _department.GetAllDepartments().ForEach(e =>
             {
                 Console.WriteLine(
                     $"id = {e.id}, name = {e.name}, location id = {e.locationId}, manager id = {e.managerId}, ");
@@ -396,7 +390,7 @@ namespace DatabaseConnectivity
 
         public void PrintEmployees()
         {
-            employee.GetAllEmployees().ForEach(e =>
+            _employee.GetAllEmployees().ForEach(e =>
             {
                 Console.WriteLine(
                     $"id = {e.id}, name = {e.firstName} {e.lastName}, email = {e.email}, phone number = {e.phoneNumber}, hire date = {e.hireDate}, salary = {e.salary}");
@@ -406,7 +400,7 @@ namespace DatabaseConnectivity
 
         public void PrintHistories()
         {
-            history.GetAllHistories().ForEach(e =>
+            _history.GetAllHistories().ForEach(e =>
             {
                 Console.WriteLine(
                     $"start date = {e.startDate}, end date = {e.endDate}, employee id = {e.employeeId}, department id = {e.departmentId}, job id = {e.jobId}");
@@ -416,7 +410,7 @@ namespace DatabaseConnectivity
 
         public void PrintJobs()
         {
-            job.GetAllJobs().ForEach(e =>
+            _job.GetAllJobs().ForEach(e =>
             {
                 Console.WriteLine(
                     $"id = {e.id}, title = {e.title}, min salary = {e.minSalary}, max salary = {e.maxSalary}");
