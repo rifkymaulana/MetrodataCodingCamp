@@ -6,8 +6,8 @@ namespace DatabaseConnectivity.Models;
 
 public class Country
 {
-    public string? Id { set; get; }
-    public string? Name { set; get; }
+    public string Id { set; get; }
+    public string Name { set; get; }
     public int RegionId { set; get; }
 
 
@@ -52,7 +52,7 @@ public class Country
         return countries;
     }
 
-    public List<Country> GetById(string id)
+    public List<Country> GetById(string Id)
     {
         var conn = Connection.Conn;
         List<Country> countries = new List<Country>();
@@ -64,7 +64,7 @@ public class Country
 
             SqlParameter parameterId = new SqlParameter();
             parameterId.ParameterName = "@id";
-            parameterId.Value = id;
+            parameterId.Value = Id;
             parameterId.SqlDbType = SqlDbType.VarChar;
 
             command.Parameters.Add(parameterId);
@@ -101,7 +101,7 @@ public class Country
     }
 
 
-    public int Insert(string id, string name, int regionId)
+    public int Insert(string Id, string Name, int RegionId)
     {
         int result = 0;
         Connection.Conn.Open();
@@ -116,17 +116,17 @@ public class Country
 
             SqlParameter parameterId = new SqlParameter();
             parameterId.ParameterName = "@id";
-            parameterId.Value = id;
+            parameterId.Value = Id;
             parameterId.SqlDbType = SqlDbType.VarChar;
 
             SqlParameter parameterName = new SqlParameter();
             parameterName.ParameterName = "@name";
-            parameterName.Value = name;
+            parameterName.Value = Name;
             parameterName.SqlDbType = SqlDbType.VarChar;
 
             SqlParameter parameterRegionId = new SqlParameter();
             parameterRegionId.ParameterName = "@region_id";
-            parameterRegionId.Value = regionId;
+            parameterRegionId.Value = RegionId;
             parameterRegionId.SqlDbType = SqlDbType.Int;
 
             command.Parameters.Add(parameterId);
@@ -154,33 +154,37 @@ public class Country
     }
 
 
-    public int Update(string id, string name, int region_id)
+    public int Update(string Id, string Name, int RegionId)
     {
+        var conn = Connection.Conn;
         int result = 0;
-        Connection.Conn.Open();
+        conn.Open();
 
-        SqlTransaction transaction = Connection.Conn.BeginTransaction();
+        SqlTransaction transaction = conn.BeginTransaction();
         try
         {
             SqlCommand command = new SqlCommand();
-            command.Connection = Connection.Conn;
-            command.CommandText =
-                "UPDATE tb_m_countries SET id = @id, name = @name, region_id = @region_id WHERE id = @id";
+            command.Connection = conn;
+            command.CommandText = "UPDATE tb_m_countries SET " +
+                                  "id = @id," +
+                                  "name = @name," +
+                                  "region_id = @region_id " +
+                                  "WHERE id = @id";
             command.Transaction = transaction;
 
             SqlParameter parameterId = new SqlParameter();
             parameterId.ParameterName = "@id";
-            parameterId.Value = id;
+            parameterId.Value = Id;
             parameterId.SqlDbType = SqlDbType.VarChar;
 
             SqlParameter parameterName = new SqlParameter();
             parameterName.ParameterName = "@name";
-            parameterName.Value = name;
+            parameterName.Value = Name;
             parameterName.SqlDbType = SqlDbType.VarChar;
 
             SqlParameter parameterIdRegion = new SqlParameter();
             parameterIdRegion.ParameterName = "@region_id";
-            parameterIdRegion.Value = region_id;
+            parameterIdRegion.Value = RegionId;
             parameterIdRegion.SqlDbType = SqlDbType.Int;
 
             command.Parameters.Add(parameterId);
@@ -203,11 +207,11 @@ public class Country
             }
         }
 
-        Connection.Conn.Close();
+        conn.Close();
         return result;
     }
 
-    public static int Delete(int id)
+    public static int Delete(int Id)
     {
         var conn = Connection.Conn;
         int result = 0;
@@ -223,7 +227,7 @@ public class Country
 
             SqlParameter parameterId = new SqlParameter();
             parameterId.ParameterName = "@id";
-            parameterId.Value = id;
+            parameterId.Value = Id;
             parameterId.SqlDbType = SqlDbType.Int;
 
             command.Parameters.Add(parameterId);
