@@ -28,7 +28,7 @@ public class Country
             {
                 while (reader.Read())
                 {
-                    var country = new Country();
+                    Country country = new Country();
                     country.Id = reader.GetString(0);
                     country.Name = reader.GetString(1);
                     country.RegionId = reader.GetInt32(2);
@@ -101,7 +101,7 @@ public class Country
     }
 
 
-    public int InsertCountry(string id, string name, int region_id)
+    public int InsertCountry(string id, string name, int regionId)
     {
         int result = 0;
         Connection.Conn.Open();
@@ -126,7 +126,7 @@ public class Country
 
             SqlParameter parameterRegionId = new SqlParameter();
             parameterRegionId.ParameterName = "@region_id";
-            parameterRegionId.Value = region_id;
+            parameterRegionId.Value = regionId;
             parameterRegionId.SqlDbType = SqlDbType.Int;
 
             command.Parameters.Add(parameterId);

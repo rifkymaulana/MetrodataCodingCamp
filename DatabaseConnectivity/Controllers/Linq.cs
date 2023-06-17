@@ -22,13 +22,13 @@ public class Linq
             join c in _country.GetAllCountries() on l.CountryId equals c.Id
             join r in _region.GetAllRegions() on c.RegionId equals r.Id
             select new {
-                Id = e.Id,
+                e.Id,
                 FullName = $"{e.FirstName} {e.LastName}",
-                Email = e.Email,
+                e.Email,
                 Phone = e.PhoneNumber,
-                Salary = e.Salary,
+                e.Salary,
                 Department_Name = d.Name,
-                StreetAddress = l.StreetAddress,
+                l.StreetAddress,
                 CountryName = c.Name,
                 RegionName = r.Name
             }).Take(limit).ToList();

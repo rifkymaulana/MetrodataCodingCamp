@@ -13,7 +13,7 @@ public class Employee
     public string PhoneNumber { get; set; } = string.Empty;
     public DateTime HireDate { get; set; }
     public int Salary { get; set; }
-    public decimal CommisionPct { get; set; }
+    public decimal CommissionPct { get; set; }
     public int ManagerId { get; set; }
     public string JobId { get; set; } = string.Empty;
     public int DepartmentId { get; set; }
@@ -43,7 +43,7 @@ public class Employee
                     employee.PhoneNumber = reader.GetString(4);
                     employee.HireDate = reader.GetDateTime(5);
                     employee.Salary = reader.GetInt32(6);
-                    employee.CommisionPct = reader.IsDBNull(7) ? 0.0m : reader.GetDecimal(7);
+                    employee.CommissionPct = reader.IsDBNull(7) ? 0.0m : reader.GetDecimal(7);
                     employee.ManagerId = reader.IsDBNull(8) ? 0 : reader.GetInt32(8);
                     employee.JobId = reader.IsDBNull(9) ? "" : reader.GetString(9);
                     employee.DepartmentId = reader.IsDBNull(10) ? 0 : reader.GetInt32(10);

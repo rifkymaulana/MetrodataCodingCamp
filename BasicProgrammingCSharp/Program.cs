@@ -11,7 +11,7 @@
         Console.WriteLine("-------------------------------------");
 
         Console.Write("Pilihan: ");
-        string input_choice = Console.ReadLine();
+        string input_choice = Console.ReadLine() ?? "";
         int choice;
 
         if (!int.TryParse(input_choice, out choice))
@@ -25,7 +25,7 @@
             case 1:
                 Console.Write("Masukan bilangan yang ingin dicek : ");
 
-                string input_number = Console.ReadLine();
+                string input_number = Console.ReadLine() ?? "";
                 int number;
 
                 if (!int.TryParse(input_number, out number))
@@ -38,9 +38,9 @@
                 break;
             case 2:
                 Console.Write("Pilih (Ganjil/Genap) : ");
-                string even_or_odd = Console.ReadLine().Trim();
+                string even_or_odd = Console.ReadLine() ?? "";
                 Console.Write("Masukan limit : ");
-                string input_limit = Console.ReadLine();
+                string input_limit = Console.ReadLine() ?? "";
                 int limit;
 
                 if (!int.TryParse(input_limit, out limit))

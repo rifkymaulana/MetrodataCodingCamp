@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 
+
 namespace DatabaseConnectivity.Contexts;
 
 public static class Connection

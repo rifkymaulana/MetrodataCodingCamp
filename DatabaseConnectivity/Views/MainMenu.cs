@@ -1,6 +1,7 @@
 ﻿using DatabaseConnectivity.Models;
 using DatabaseConnectivity.Controllers;
 
+
 namespace DatabaseConnectivity.Views;
 
 class MainMenu
@@ -62,7 +63,7 @@ class MainMenu
         Console.Clear();
         Console.WriteLine("++ Login ++");
         Console.Write(" email: ");
-        string email =  Console.ReadLine() ?? "";
+        string email = Console.ReadLine() ?? "";
         Console.Write(" Password: ");
         string password = Console.ReadLine() ?? "";
         if (Authentication.Login(email, password))
