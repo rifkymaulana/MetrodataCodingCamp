@@ -1,7 +1,10 @@
+using DatabaseConnectivity.Models;
+
 namespace DatabaseConnectivity.Views;
 
 class JobView
 {
+    private readonly Job _job = new Job();
     void Main()
     {
         Console.Clear();
@@ -43,5 +46,56 @@ class JobView
             Console.Write("Click any key for continue...");
             Console.ReadKey();
         }
+    }
+
+
+    void getAll()
+    {
+        Console.Clear();
+        Console.WriteLine("++ Show All Region ++");
+        _job.GetAll().ForEach(e =>
+        {
+            Console.WriteLine($"Id = {e.Id}");
+            Console.WriteLine($"Title = {e.Title}");
+            Console.WriteLine($"Min Salary = {e.MinSalary}");
+            Console.WriteLine($"Max Salary = {e.MaxSalary}");
+            Console.WriteLine();
+        });
+    }
+
+
+    void GetById()
+    {
+        Console.Clear();
+        Console.WriteLine("++ Show Region By Id ++");
+        Console.Write("Input Id: ");
+        try
+        {
+            int Id = Convert.ToInt32(Console.ReadLine());
+            this.GetById(Id);
+            Console.Write("Click any key for continue...");
+            Console.ReadKey();
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Please, input only number not alphabet");
+            Console.Write("Click any key for continue...");
+            Console.ReadKey();
+        }
+    }
+
+
+    private void GetById(int Id)
+    {
+        Console.Clear();
+        Console.WriteLine("++ Show Region By Id ++");
+        _job.GetById(Id).ForEach(e =>
+        {
+            Console.WriteLine($"Id = {e.Id}");
+            Console.WriteLine($"Title = {e.Title}");
+            Console.WriteLine($"Min Salary = {e.MinSalary}");
+            Console.WriteLine($"Max Salary = {e.MaxSalary}");
+            Console.WriteLine();
+        });
     }
 }

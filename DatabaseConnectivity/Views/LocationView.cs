@@ -1,7 +1,10 @@
+using DatabaseConnectivity.Models;
+
 namespace DatabaseConnectivity.Views;
 
 class LocationView
 {
+    private readonly Location _location = new Location();
     void Menu()
     {
         Console.Clear();
@@ -43,5 +46,60 @@ class LocationView
             Console.Write("Click any key for continue...");
             Console.ReadKey();
         }
+    }
+
+
+    void getAll()
+    {
+        Console.Clear();
+        Console.WriteLine("++ Show All Region ++");
+        _location.GetAll().ForEach(e =>
+        {
+            Console.WriteLine($"Id = {e.Id}");
+            Console.WriteLine($"Street Address = {e.StreetAddress}");
+            Console.WriteLine($"Postal Code = {e.PostalCode}");
+            Console.WriteLine($"City = {e.City}");
+            Console.WriteLine($"State Province = {e.StateProvince}");
+            Console.WriteLine($"Country Id = {e.CountryId}");
+            Console.WriteLine();
+        });
+    }
+
+
+    void GetById()
+    {
+        Console.Clear();
+        Console.WriteLine("++ Show Region By Id ++");
+        Console.Write("Input Id: ");
+        try
+        {
+            int Id = Convert.ToInt32(Console.ReadLine());
+            this.GetById(Id);
+            Console.Write("Click any key for continue...");
+            Console.ReadKey();
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Please, input only number not alphabet");
+            Console.Write("Click any key for continue...");
+            Console.ReadKey();
+        }
+    }
+
+
+    private void GetById(int Id)
+    {
+        Console.Clear();
+        Console.WriteLine("++ Show Region By Id ++");
+        _location.GetById(Id).ForEach(e =>
+        {
+            Console.WriteLine($"Id = {e.Id}");
+            Console.WriteLine($"Street Address = {e.StreetAddress}");
+            Console.WriteLine($"Postal Code = {e.PostalCode}");
+            Console.WriteLine($"City = {e.City}");
+            Console.WriteLine($"State Province = {e.StateProvince}");
+            Console.WriteLine($"Country Id = {e.CountryId}");
+            Console.WriteLine();
+        });
     }
 }

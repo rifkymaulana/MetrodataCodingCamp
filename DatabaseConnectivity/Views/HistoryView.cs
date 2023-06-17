@@ -1,7 +1,10 @@
+using DatabaseConnectivity.Models;
+
 namespace DatabaseConnectivity.Views;
 
 class HistoryView
 {
+    History _history = new History();
     void Main()
     {
         Console.Clear();
@@ -43,5 +46,58 @@ class HistoryView
             Console.Write("Click any key for continue...");
             Console.ReadKey();
         }
+    }
+
+
+    void GetAll()
+    {
+        Console.Clear();
+        Console.WriteLine("++ Print Histories ++");
+        _history.GetAll().ForEach(e =>
+        {
+            Console.WriteLine($"Start Date = {e.StartDate}");
+            Console.WriteLine($"End Date = {e.EndDate}");
+            Console.WriteLine($"Employee Id = {e.EmployeeId}");
+            Console.WriteLine($"Department Id = {e.DepartmentId}");
+            Console.WriteLine($"Job Id = {e.JobId}");
+            Console.WriteLine();
+        });
+    }
+
+
+    void GetByEmployeeId()
+    {
+        Console.Clear();
+        Console.WriteLine("++ Show Region By Id ++");
+        Console.Write("Input Id: ");
+        try
+        {
+            int id = Convert.ToInt32(Console.ReadLine());
+            this.GetByEmployeeId(id);
+            Console.Write("Click any key for continue...");
+            Console.ReadKey();
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Please, input only number not alphabet");
+            Console.Write("Click any key for continue...");
+            Console.ReadKey();
+        }
+    }
+
+
+    void GetByEmployeeId(int id)
+    {
+        Console.Clear();
+        Console.WriteLine("++ Show Region By Id ++");
+        _history.GetByEmployeeId(id).ForEach(e =>
+        {
+            Console.WriteLine($"Start Date = {e.StartDate}");
+            Console.WriteLine($"End Date = {e.EndDate}");
+            Console.WriteLine($"Employee Id = {e.EmployeeId}");
+            Console.WriteLine($"Department Id = {e.DepartmentId}");
+            Console.WriteLine($"Job Id = {e.JobId}");
+            Console.WriteLine();
+        });
     }
 }

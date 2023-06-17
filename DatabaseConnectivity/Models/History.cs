@@ -33,7 +33,7 @@ public class History
                     var history = new History();
                     history.StartDate = reader.GetDateTime(0);
                     history.EmployeeId = reader.GetInt32(1);
-                    history.EndDate = reader.IsDBNull(2)? null : reader.GetDateTime(2);
+                    history.EndDate = reader.IsDBNull(2) ? null : reader.GetDateTime(2);
                     history.DepartmentId = reader.GetInt32(3);
                     history.JobId = reader.GetString(4);
 
@@ -57,7 +57,7 @@ public class History
     }
 
 
-    public List<History> GetById(DateTime StartDate,int EmployeeId)
+    public List<History> GetByEmployeeId(int EmployeeId)
     {
         var conn = Connection.Conn;
         List<History> histories = new List<History>();
@@ -65,19 +65,13 @@ public class History
         {
             SqlCommand command = new SqlCommand();
             command.Connection = conn;
-            command.CommandText = "SELECT * FROM tb_m_histories WHERE start_date = @id AND employee_id = @employee_id";
+            command.CommandText = "SELECT * FROM tb_m_histories WHERE employee_id = @employee_id";
 
-            SqlParameter parameterStartDate = new SqlParameter();
-            parameterStartDate.ParameterName = "@start_date";
-            parameterStartDate.Value = StartDate;
-            parameterStartDate.SqlDbType = SqlDbType.DateTime;
-            
             SqlParameter parameterEmployeeId = new SqlParameter();
             parameterEmployeeId.ParameterName = "@employee_id";
             parameterEmployeeId.Value = EmployeeId;
             parameterEmployeeId.SqlDbType = SqlDbType.Int;
 
-            command.Parameters.Add(parameterStartDate);
             command.Parameters.Add(parameterEmployeeId);
 
             conn.Open();
@@ -91,7 +85,7 @@ public class History
                     var history = new History();
                     history.StartDate = reader.GetDateTime(0);
                     history.EmployeeId = reader.GetInt32(1);
-                    history.EndDate = reader.IsDBNull(2)? null : reader.GetDateTime(2);
+                    history.EndDate = reader.IsDBNull(2) ? null : reader.GetDateTime(2);
                     history.DepartmentId = reader.GetInt32(3);
                     history.JobId = reader.GetString(4);
 
@@ -115,7 +109,7 @@ public class History
     }
 
 
-    public int Insert(DateTime StartDate,int EmployeeId,DateTime? EndDate,int DepartmentId,string JobId )
+    public int Insert(DateTime StartDate, int EmployeeId, DateTime? EndDate, int DepartmentId, string JobId)
     {
         int result = 0;
         Connection.Conn.Open();
@@ -130,32 +124,32 @@ public class History
                                   "VALUES" +
                                   "(@start_date, @employee_id, @end_date, @department_id, @job_id)";
             command.Transaction = transaction;
-            
+
             SqlParameter parameterStartDate = new SqlParameter();
             parameterStartDate.ParameterName = "@start_date";
             parameterStartDate.Value = StartDate;
             parameterStartDate.SqlDbType = SqlDbType.DateTime;
-            
+
             SqlParameter parameterEmployeeId = new SqlParameter();
             parameterEmployeeId.ParameterName = "@employee_id";
             parameterEmployeeId.Value = EmployeeId;
             parameterEmployeeId.SqlDbType = SqlDbType.Int;
-            
+
             SqlParameter parameterEndDate = new SqlParameter();
             parameterEndDate.ParameterName = "@end_date";
             parameterEndDate.Value = EndDate;
             parameterEndDate.SqlDbType = SqlDbType.DateTime;
-            
+
             SqlParameter parameterDepartmentId = new SqlParameter();
             parameterDepartmentId.ParameterName = "@department_id";
             parameterDepartmentId.Value = DepartmentId;
             parameterDepartmentId.SqlDbType = SqlDbType.Int;
-            
+
             SqlParameter parameterJobId = new SqlParameter();
             parameterJobId.ParameterName = "@job_id";
             parameterJobId.Value = JobId;
             parameterJobId.SqlDbType = SqlDbType.VarChar;
-            
+
             command.Parameters.Add(parameterStartDate);
             command.Parameters.Add(parameterEmployeeId);
             command.Parameters.Add(parameterEndDate);
@@ -206,27 +200,27 @@ public class History
             parameterStartDate.ParameterName = "@start_date";
             parameterStartDate.Value = StartDate;
             parameterStartDate.SqlDbType = SqlDbType.DateTime;
-            
+
             SqlParameter parameterEmployeeId = new SqlParameter();
             parameterEmployeeId.ParameterName = "@employee_id";
             parameterEmployeeId.Value = EmployeeId;
             parameterEmployeeId.SqlDbType = SqlDbType.Int;
-            
+
             SqlParameter parameterEndDate = new SqlParameter();
             parameterEndDate.ParameterName = "@end_date";
             parameterEndDate.Value = EndDate;
             parameterEndDate.SqlDbType = SqlDbType.DateTime;
-            
+
             SqlParameter parameterDepartmentId = new SqlParameter();
             parameterDepartmentId.ParameterName = "@department_id";
             parameterDepartmentId.Value = DepartmentId;
             parameterDepartmentId.SqlDbType = SqlDbType.Int;
-            
+
             SqlParameter parameterJobId = new SqlParameter();
             parameterJobId.ParameterName = "@job_id";
             parameterJobId.Value = JobId;
             parameterJobId.SqlDbType = SqlDbType.VarChar;
-            
+
             command.Parameters.Add(parameterStartDate);
             command.Parameters.Add(parameterEmployeeId);
             command.Parameters.Add(parameterEndDate);
@@ -267,17 +261,17 @@ public class History
             command.Connection = conn;
             command.CommandText = "DELETE FROM tb_m_locations WHERE start_date = @start_date AND employee_id = @employee_id";
             command.Transaction = transaction;
-            
+
             SqlParameter parameterStartDate = new SqlParameter();
             parameterStartDate.ParameterName = "@start_date";
             parameterStartDate.Value = StartDate;
             parameterStartDate.SqlDbType = SqlDbType.DateTime;
-            
+
             SqlParameter parameterEmployeeId = new SqlParameter();
             parameterEmployeeId.ParameterName = "@employee_id";
             parameterEmployeeId.Value = EmployeeId;
             parameterEmployeeId.SqlDbType = SqlDbType.Int;
-            
+
             command.Parameters.Add(parameterStartDate);
             command.Parameters.Add(parameterEmployeeId);
 

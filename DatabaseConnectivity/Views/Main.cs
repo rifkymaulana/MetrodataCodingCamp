@@ -198,22 +198,6 @@ class Main
     }
 
 
-    private void PrintHistories()
-    {
-        Console.Clear();
-        Console.WriteLine("++ Print Histories ++");
-        _history.GetAll().ForEach(e =>
-        {
-            Console.WriteLine($"Start Date = {e.StartDate}");
-            Console.WriteLine($"End Date = {e.EndDate}");
-            Console.WriteLine($"Employee Id = {e.EmployeeId}");
-            Console.WriteLine($"Department Id = {e.DepartmentId}");
-            Console.WriteLine($"Job Id = {e.JobId}");
-            Console.WriteLine();
-        });
-    }
-
-
     private void PrintJobs()
     {
         Console.Clear();
