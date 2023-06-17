@@ -4,13 +4,13 @@ using DatabaseConnectivity.Contexts;
 
 namespace DatabaseConnectivity.Models;
 
+
 public class Region
 {
     public int Id { get; set; }
     public string? Name { get; set; }
 
-
-    public List<Region> GetAllRegions()
+    public List<Region> GetAll()
     {
         var conn = Connection.Conn;
         List<Region> regions = new List<Region>();
@@ -51,7 +51,7 @@ public class Region
     }
 
 
-    public List<Region> GetRegionById(int id)
+    public List<Region> GetById(int id)
     {
         var conn = Connection.Conn;
         List<Region> regions = new List<Region>();
@@ -99,7 +99,7 @@ public class Region
     }
 
 
-    public int InsertRegion(string name)
+    public int Insert(string name)
     {
         int result = 0;
         Connection.Conn.Open();
@@ -140,7 +140,7 @@ public class Region
     }
 
 
-    public int UpdateRegionById(int id, string name)
+    public int Update(int id, string name)
     {
         int result = 0;
         Connection.Conn.Open();
@@ -188,7 +188,7 @@ public class Region
     }
 
 
-    public int DeleteRegionById(int id)
+    public int Delete(int id)
     {
         var conn = Connection.Conn;
         int result = 0;

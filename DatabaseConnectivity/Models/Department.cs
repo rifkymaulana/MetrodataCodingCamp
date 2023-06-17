@@ -11,7 +11,7 @@ public class Department
     public int ManagerId { get; set; }
 
 
-    public List<Department> GetAllDepartments()
+    public List<Department> GetAll()
     {
         var conn = Connection.Conn;
         List<Department> departments = new List<Department>();

@@ -15,12 +15,12 @@ public class Linq
     
     public void GetEmployees(int limit)
     {
-        var employees = (from e in _employee.GetAllEmployees()
-            join j in _job.GetAllJobs() on e.JobId equals j.Id
-            join d in _department.GetAllDepartments() on e.DepartmentId equals d.Id
-            join l in _location.GetAllLocations() on d.LocationId equals l.Id
-            join c in _country.GetAllCountries() on l.CountryId equals c.Id
-            join r in _region.GetAllRegions() on c.RegionId equals r.Id
+        var employees = (from e in _employee.GetAll()
+            join j in _job.GetAll() on e.JobId equals j.Id
+            join d in _department.GetAll() on e.DepartmentId equals d.Id
+            join l in _location.GetAll() on d.LocationId equals l.Id
+            join c in _country.GetAll() on l.CountryId equals c.Id
+            join r in _region.GetAll() on c.RegionId equals r.Id
             select new {
                 e.Id,
                 FullName = $"{e.FirstName} {e.LastName}",
@@ -51,8 +51,8 @@ public class Linq
     
     public void GetDepartments()
     {
-        var employees = (from e in _employee.GetAllEmployees()
-            join d in _department.GetAllDepartments() on e.DepartmentId equals d.Id
+        var employees = (from e in _employee.GetAll()
+            join d in _department.GetAll() on e.DepartmentId equals d.Id
             group e by new {d.Name, e.DepartmentId}
             into g
             where g.Count() > 3

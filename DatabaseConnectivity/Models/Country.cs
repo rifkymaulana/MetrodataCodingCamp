@@ -11,7 +11,7 @@ public class Country
     public int RegionId { set; get; }
 
 
-    public List<Country> GetAllCountries()
+    public List<Country> GetAll()
     {
         var conn = Connection.Conn;
         List<Country> countries = new List<Country>();
@@ -52,7 +52,7 @@ public class Country
         return countries;
     }
 
-    public List<Country> GetCountryById(string id)
+    public List<Country> GetById(string id)
     {
         var conn = Connection.Conn;
         List<Country> countries = new List<Country>();
@@ -101,7 +101,7 @@ public class Country
     }
 
 
-    public int InsertCountry(string id, string name, int regionId)
+    public int Insert(string id, string name, int regionId)
     {
         int result = 0;
         Connection.Conn.Open();
@@ -154,7 +154,7 @@ public class Country
     }
 
 
-    public int UpdateRegionById(string id, string name, int region_id)
+    public int Update(string id, string name, int region_id)
     {
         int result = 0;
         Connection.Conn.Open();
@@ -207,7 +207,7 @@ public class Country
         return result;
     }
 
-    public static int DeleteRegionById(int id)
+    public static int Delete(int id)
     {
         var conn = Connection.Conn;
         int result = 0;

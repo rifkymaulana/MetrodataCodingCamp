@@ -1,12 +1,12 @@
 ﻿
 namespace DatabaseConnectivity.Controllers;
 
-static class Authentication
+class Authentication
 {
     /*protected static Employee employee = new Employee();
 
     protected static List<Employee> employees = employee.GetAllEmployees();*/
-    public static bool Login(string email, string password)
+    public bool Login(string email, string password)
     {
         /*foreach (var employee in employees)
         {

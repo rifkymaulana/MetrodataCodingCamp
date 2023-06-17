@@ -19,10 +19,10 @@ class MainMenu
     {
         Console.Clear();
         Console.WriteLine("++ Welcome to HumanResourceApp ++");
-        Console.WriteLine(" 1. Login");
-        Console.WriteLine(" 2. SignUp");
-        Console.WriteLine(" 0. Exit");
-        Console.Write(" Please select menu: ");
+        Console.WriteLine("1. Login");
+        Console.WriteLine("2. SignUp");
+        Console.WriteLine("0. Exit");
+        Console.Write("Please select menu: ");
         try
         {
             int inputMenu = Convert.ToInt32(Console.ReadLine());
@@ -60,13 +60,14 @@ class MainMenu
 
     void Login()
     {
+        Authentication authentication = new Authentication();
         Console.Clear();
         Console.WriteLine("++ Login ++");
-        Console.Write(" email: ");
+        Console.Write("Email: ");
         string email = Console.ReadLine() ?? "";
-        Console.Write(" Password: ");
+        Console.Write("Password: ");
         string password = Console.ReadLine() ?? "";
-        if (Authentication.Login(email, password))
+        if (authentication.Login(email, password))
         {
             this.CrudMenu();
         }
@@ -84,17 +85,17 @@ class MainMenu
     {
         Console.Clear();
         Console.WriteLine("++ Crud Menu ++");
-        Console.WriteLine(" 1. Crud Region");
-        Console.WriteLine(" 2. Crud Country");
-        Console.WriteLine(" 3. Show Location");
-        Console.WriteLine(" 4. Show Department");
-        Console.WriteLine(" 5. Show Employee");
-        Console.WriteLine(" 6. Show History");
-        Console.WriteLine(" 7. Show Job");
-        Console.WriteLine(" 8. LINQ Show Employees");
-        Console.WriteLine(" 9. LINQ Show Departments");
-        Console.WriteLine(" 0. Logout");
-        Console.Write(" Please select menu: ");
+        Console.WriteLine("1. Crud Region");
+        Console.WriteLine("2. Crud Country");
+        Console.WriteLine("3. Show Location");
+        Console.WriteLine("4. Show Department");
+        Console.WriteLine("5. Show Employee");
+        Console.WriteLine("6. Show History");
+        Console.WriteLine("7. Show Job");
+        Console.WriteLine("8. LINQ Show Employees");
+        Console.WriteLine("9. LINQ Show Departments");
+        Console.WriteLine("0. Logout");
+        Console.Write("Please select menu: ");
         try
         {
             Linq linq = new Linq();
@@ -198,13 +199,13 @@ class MainMenu
     {
         Console.Clear();
         Console.WriteLine("++ Crud Region ++");
-        Console.WriteLine(" 1. Create");
-        Console.WriteLine(" 2. Show All");
-        Console.WriteLine(" 3. Show By Id");
-        Console.WriteLine(" 4. Update");
-        Console.WriteLine(" 5. Delete");
-        Console.WriteLine(" 9. Back");
-        Console.Write(" Please select menu: ");
+        Console.WriteLine("1. Create");
+        Console.WriteLine("2. Show All");
+        Console.WriteLine("3. Show By Id");
+        Console.WriteLine("4. Update");
+        Console.WriteLine("5. Delete");
+        Console.WriteLine("9. Back");
+        Console.Write("Please select menu: ");
         try
         {
             int inputMenu = Convert.ToInt32(Console.ReadLine());
@@ -247,13 +248,13 @@ class MainMenu
     {
         Console.Clear();
         Console.WriteLine("++ Crud Country ++");
-        Console.WriteLine(" 1. Create");
-        Console.WriteLine(" 2. Show All");
-        Console.WriteLine(" 3. Show By Id");
-        Console.WriteLine(" 4. Update");
-        Console.WriteLine(" 5. Delete");
-        Console.WriteLine(" 9. Back");
-        Console.Write(" Please select menu: ");
+        Console.WriteLine("1. Create");
+        Console.WriteLine("2. Show All");
+        Console.WriteLine("3. Show By Id");
+        Console.WriteLine("4. Update");
+        Console.WriteLine("5. Delete");
+        Console.WriteLine("9. Back");
+        Console.Write("Please select menu: ");
         try
         {
             int inputMenu = Convert.ToInt32(Console.ReadLine());
@@ -293,20 +294,34 @@ class MainMenu
 
     private void PrintRegions()
     {
-        _region.GetAllRegions().ForEach(e => { Console.WriteLine($"id = {e.Id}, name = {e.Name}"); });
+        Console.Clear();
+        Console.WriteLine("++ Show All Region ++");
+        _region.GetAll().ForEach(e =>
+        {
+            Console.WriteLine($"Id = {e.Id}");
+            Console.WriteLine($"Name = {e.Name}");
+            Console.WriteLine();
+        });
     }
 
 
     private void PrintRegionById(int id)
     {
-        _region.GetRegionById(id).ForEach(e => { Console.WriteLine($"id = {e.Id}, name = {e.Name}"); });
+        Console.Clear();
+        Console.WriteLine("++ Show Region By Id ++");
+        _region.GetById(id).ForEach(e =>
+        {
+            Console.WriteLine($"Id = {e.Id}");
+            Console.WriteLine($"Name = {e.Name}");
+            Console.WriteLine();
+        });
     }
 
     private void ShowRegionById()
     {
         Console.Clear();
         Console.WriteLine("++ Show Region By Id ++");
-        Console.Write(" id: ");
+        Console.Write("Input Id: ");
         try
         {
             int id = Convert.ToInt32(Console.ReadLine());
@@ -327,11 +342,13 @@ class MainMenu
 
     private void PrintCountries()
     {
-        _country.GetAllCountries().ForEach(e =>
+        Console.Clear();
+        Console.WriteLine("++ Show All Country ++");
+        _country.GetAll().ForEach(e =>
         {
-            Console.WriteLine($"id = {e.Id}");
-            Console.WriteLine($"name = {e.Name}");
-            Console.WriteLine($"region id = {e.RegionId}");
+            Console.WriteLine($"Id = {e.Id}");
+            Console.WriteLine($"Name = {e.Name}");
+            Console.WriteLine($"Region Id = {e.RegionId}");
             Console.WriteLine();
         });
     }
@@ -339,11 +356,13 @@ class MainMenu
 
     private void PrintCountryById(string id)
     {
-        _country.GetCountryById(id).ForEach(e =>
+        Console.Clear();
+        Console.WriteLine("++ Show Country By Id ++");
+        _country.GetById(id).ForEach(e =>
         {
-            Console.WriteLine($"id = {e.Id}");
-            Console.WriteLine($"name = {e.Name}");
-            Console.WriteLine($"region id = {e.RegionId}");
+            Console.WriteLine($"Id = {e.Id}");
+            Console.WriteLine($"Name = {e.Name}");
+            Console.WriteLine($"Region Id = {e.RegionId}");
             Console.WriteLine();
         });
     }
@@ -353,7 +372,7 @@ class MainMenu
     {
         Console.Clear();
         Console.WriteLine("++ Show Country By Id ++");
-        Console.Write(" id: ");
+        Console.Write("Input Id: ");
         try
         {
             string id = Console.ReadLine() ?? "";
@@ -374,50 +393,84 @@ class MainMenu
 
     private void PrintLocations()
     {
-        _location.GetAllLocations().ForEach(e =>
+        Console.Clear();
+        Console.WriteLine("++ Print Locations ++");
+        _location.GetAll().ForEach(e =>
         {
-            Console.WriteLine(
-                $"id = {e.Id}, street address = {e.StreetAddress}, postal code = {e.PostalCode}, city = {e.City}, state province = {e.StateProvince}, country id = {e.CountryId}");
+            Console.WriteLine($"Id = {e.Id}");
+            Console.WriteLine($"Street Address = {e.StreetAddress}");
+            Console.WriteLine($"Postal Code = {e.PostalCode}");
+            Console.WriteLine($"City = {e.City}");
+            Console.WriteLine($"State Province = {e.StateProvince}");
+            Console.WriteLine($"Country Id = {e.CountryId}");
+            Console.WriteLine();
         });
     }
 
 
     private void PrintDepartments()
     {
-        _department.GetAllDepartments().ForEach(e =>
+        Console.Clear();
+        Console.WriteLine("++ Print Departments ++");
+        _department.GetAll().ForEach(e =>
         {
-            Console.WriteLine(
-                $"id = {e.Id}, name = {e.Name}, location id = {e.LocationId}, manager id = {e.ManagerId}, ");
+            Console.WriteLine($"Id = {e.Id}");
+            Console.WriteLine($"Name = {e.Name}");
+            Console.WriteLine($"Location Id = {e.LocationId}");
+            Console.WriteLine($"Manager Id = {e.ManagerId}");
+            Console.WriteLine();
         });
     }
 
 
     private void PrintEmployees()
     {
-        _employee.GetAllEmployees().ForEach(e =>
+        Console.Clear();
+        Console.WriteLine("++ Print Employees ++");
+        _employee.GetAll().ForEach(e =>
         {
-            Console.WriteLine(
-                $"id = {e.Id}, name = {e.FirstName} {e.LastName}, email = {e.Email}, phone number = {e.PhoneNumber}, hire date = {e.HireDate}, salary = {e.Salary}");
+            Console.WriteLine($"Id = {e.Id}");
+            Console.WriteLine($"First Name = {e.FirstName}");
+            Console.WriteLine($"Last Name = {e.LastName}");
+            Console.WriteLine($"Email = {e.Email}");
+            Console.WriteLine($"Phone Number = {e.PhoneNumber}");
+            Console.WriteLine($"Hire Date = {e.HireDate}");
+            Console.WriteLine($"Salary = {e.Salary}");
+            Console.WriteLine($"Commission Pct = {e.CommissionPct}");
+            Console.WriteLine($"Manager Id = {e.ManagerId}");
+            Console.WriteLine($"Department Id = {e.DepartmentId}");
+            Console.WriteLine();
         });
     }
 
 
     private void PrintHistories()
     {
-        _history.GetAllHistories().ForEach(e =>
+        Console.Clear();
+        Console.WriteLine("++ Print Histories ++");
+        _history.GetAll().ForEach(e =>
         {
-            Console.WriteLine(
-                $"start date = {e.StartDate}, end date = {e.EndDate}, employee id = {e.EmployeeId}, department id = {e.DepartmentId}, job id = {e.JobId}");
+            Console.WriteLine($"Start Date = {e.StartDate}");
+            Console.WriteLine($"End Date = {e.EndDate}");
+            Console.WriteLine($"Employee Id = {e.EmployeeId}");
+            Console.WriteLine($"Department Id = {e.DepartmentId}");
+            Console.WriteLine($"Job Id = {e.JobId}");
+            Console.WriteLine();
         });
     }
 
 
     private void PrintJobs()
     {
-        _job.GetAllJobs().ForEach(e =>
+        Console.Clear();
+        Console.WriteLine("++ Print Jobs ++");
+        _job.GetAll().ForEach(e =>
         {
-            Console.WriteLine(
-                $"id = {e.Id}, title = {e.Title}, min salary = {e.MinSalary}, max salary = {e.MaxSalary}");
+            Console.WriteLine($"Id = {e.Id}");
+            Console.WriteLine($"Title = {e.Title}");
+            Console.WriteLine($"Min Salary = {e.MinSalary}");
+            Console.WriteLine($"Max Salary = {e.MaxSalary}");
+            Console.WriteLine();
         });
     }
 }

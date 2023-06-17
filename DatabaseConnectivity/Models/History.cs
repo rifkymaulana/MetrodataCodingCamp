@@ -12,7 +12,7 @@ public class History
     public string JobId { get; set; } = string.Empty;
 
 
-    public List<History> GetAllHistories()
+    public List<History> GetAll()
     {
         var conn = Connection.Conn;
         List<History> histories = new List<History>();

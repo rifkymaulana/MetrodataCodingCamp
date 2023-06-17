@@ -18,7 +18,7 @@ public class Employee
     public string JobId { get; set; } = string.Empty;
     public int DepartmentId { get; set; }
 
-    public List<Employee> GetAllEmployees()
+    public List<Employee> GetAll()
     {
         var conn = Connection.Conn;
         List<Employee> employees = new List<Employee>();

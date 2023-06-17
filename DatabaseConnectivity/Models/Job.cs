@@ -11,7 +11,7 @@ public class Job
     public int MaxSalary { get; set; }
 
 
-    public List<Job> GetAllJobs()
+    public List<Job> GetAll()
     {
         var conn = Connection.Conn;
         List<Job> jobs = new List<Job>();
@@ -28,12 +28,6 @@ public class Job
             {
                 while (reader.Read())
                 {
-                    /*
-                    public string id { get; set; }
-                    public string title { get; set; }
-                    public int minSalary { get; set; }
-                    public int maxSalary { get; set; }
-                     */
                     var job = new Job();
                     job.Id = reader.GetString(0);
                     job.Title = reader.GetString(1);
