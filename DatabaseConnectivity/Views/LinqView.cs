@@ -24,7 +24,7 @@ class LinqView
                 Console.WriteLine($"Email: {employeeData.Email}");
                 Console.WriteLine($"Phone: {employeeData.Phone}");
                 Console.WriteLine($"Salary: {employeeData.Salary}");
-                Console.WriteLine($"Department Name: {employeeData.Department_Name}");
+                Console.WriteLine($"Department Name: {employeeData.DepartmentName}");
                 Console.WriteLine($"Street Address: {employeeData.StreetAddress}");
                 Console.WriteLine($"Country Name: {employeeData.CountryName}");
                 Console.WriteLine($"Region Name: {employeeData.RegionName}");

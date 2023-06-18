@@ -42,7 +42,7 @@ public class LinqController
             Email = e.Email,
             Phone = e.Phone,
             Salary = e.Salary,
-            Department_Name = e.Department_Name,
+            DepartmentName = e.Department_Name,
             StreetAddress = e.StreetAddress,
             CountryName = e.CountryName,
             RegionName = e.RegionName

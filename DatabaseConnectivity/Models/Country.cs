@@ -212,7 +212,7 @@ public class Country
         return result;
     }
 
-    public static int Delete(int Id)
+    public int Delete(int Id)
     {
         var conn = Connection.Conn;
         int result = 0;
