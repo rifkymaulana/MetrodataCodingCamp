@@ -13,8 +13,9 @@ public class LinqController
     private readonly Job _job = new Job();
 
 
-    public void GetEmployees(int limit)
+    public List<EmployeeData> GetEmployees(int limit)
     {
+        List<EmployeeData> employeeDatas = new List<EmployeeData>();
         var employees = (from e in _employee.GetAll()
                          join j in _job.GetAll() on e.JobId equals j.Id
                          join d in _department.GetAll() on e.DepartmentId equals d.Id
@@ -34,24 +35,26 @@ public class LinqController
                              RegionName = r.Name
                          }).Take(limit).ToList();
 
-        foreach (var employee in employees)
+        employeeDatas.AddRange(employees.Select(e => new EmployeeData
         {
-            Console.WriteLine($"Id: {employee.Id}");
-            Console.WriteLine($"Full Name: {employee.FullName}");
-            Console.WriteLine($"Email: {employee.Email}");
-            Console.WriteLine($"Phone: {employee.Phone}");
-            Console.WriteLine($"Salary: {employee.Salary}");
-            Console.WriteLine($"Department Name: {employee.Department_Name}");
-            Console.WriteLine($"Street Address: {employee.StreetAddress}");
-            Console.WriteLine($"Country Name: {employee.CountryName}");
-            Console.WriteLine($"Region Name: {employee.RegionName}");
-            Console.WriteLine();
-        }
+            Id = e.Id,
+            FullName = e.FullName,
+            Email = e.Email,
+            Phone = e.Phone,
+            Salary = e.Salary,
+            Department_Name = e.Department_Name,
+            StreetAddress = e.StreetAddress,
+            CountryName = e.CountryName,
+            RegionName = e.RegionName
+        }));
+
+        return employeeDatas;
     }
 
 
-    public void GetDepartments()
+    public List<DepartmentData> GetDepartments()
     {
+        List<DepartmentData> departmentDatas = new List<DepartmentData>();
         var employees = (from e in _employee.GetAll()
                          join d in _department.GetAll() on e.DepartmentId equals d.Id
                          group e by new { d.Name, e.DepartmentId }
@@ -60,20 +63,21 @@ public class LinqController
                          select new
                          {
                              DepartmentName = g.Key.Name,
-                             TotalEmployee = g.Count(),
+                             TotalEmployees = g.Count(),
                              MinSalary = g.Min(e => e.Salary),
                              MaxSalary = g.Max(e => e.Salary),
                              AverageSalary = g.Average(e => e.Salary)
                          }).ToList();
 
-        foreach (var employee in employees)
+        departmentDatas.AddRange(employees.Select(e => new DepartmentData
         {
-            Console.WriteLine($"Department Name: {employee.DepartmentName}");
-            Console.WriteLine($"Total Employee: {employee.TotalEmployee}");
-            Console.WriteLine($"Min Salary: {employee.MinSalary}");
-            Console.WriteLine($"Max Salary: {employee.MaxSalary}");
-            Console.WriteLine($"Average Salary: {employee.AverageSalary}");
-            Console.WriteLine();
-        }
+            DepartmentName = e.DepartmentName,
+            TotalEmployees = e.TotalEmployees,
+            MinSalary = e.MinSalary,
+            MaxSalary = e.MaxSalary,
+            AverageSalary = e.AverageSalary
+        }));
+
+        return departmentDatas;
     }
 }

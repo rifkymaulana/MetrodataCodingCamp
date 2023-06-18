@@ -6,7 +6,7 @@ namespace DatabaseConnectivity.Views;
 class EmployeeView
 {
     private readonly Employee _employee = new Employee();
-    void Main()
+    public void Menu()
     {
         Console.Clear();
         Console.WriteLine("++ Employee Menu ++");

@@ -6,7 +6,7 @@ namespace DatabaseConnectivity.Views;
 class LocationView
 {
     private readonly Location _location = new Location();
-    void Menu()
+    public void Menu()
     {
         Console.Clear();
         Console.WriteLine("++ Crud Location ++");

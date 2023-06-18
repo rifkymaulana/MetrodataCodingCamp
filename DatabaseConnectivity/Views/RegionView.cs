@@ -7,7 +7,7 @@ class RegionView
 {
     private readonly Region _region = new Region();
 
-    void Menu()
+    public void Menu()
     {
         Console.Clear();
         Console.WriteLine("++ Crud Region ++");

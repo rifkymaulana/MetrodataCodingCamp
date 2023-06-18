@@ -7,7 +7,7 @@ class CountryView
 {
     private readonly Country _country = new Country();
 
-    void CrudCountry()
+    public void Menu()
     {
         Console.Clear();
         Console.WriteLine("++ Crud Country ++");
@@ -36,19 +36,11 @@ class CountryView
                 case 9:
                     break;
                 default:
-                    Console.WriteLine("Please, input 1, 2 3, 4 or 9");
-                    Console.Write("Click any key for continue...");
-                    Console.ReadKey();
-                    CrudCountry();
                     break;
             }
         }
         catch (Exception)
         {
-            Console.WriteLine("Please, input only number not alphabet");
-            Console.Write("Click any key for continue...");
-            Console.ReadKey();
-            CrudCountry();
         }
     }
 

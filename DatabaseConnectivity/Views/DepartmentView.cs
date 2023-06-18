@@ -7,7 +7,7 @@ class DepartmentView
 {
     private readonly Department _department = new Department();
 
-    void Menu()
+    public void Menu()
     {
         Console.Clear();
         Console.WriteLine("++ Crud Department ++");

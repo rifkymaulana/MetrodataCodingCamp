@@ -6,7 +6,7 @@ namespace DatabaseConnectivity.Views;
 class HistoryView
 {
     History _history = new History();
-    void Main()
+    public void Menu()
     {
         Console.Clear();
         Console.WriteLine("++ History Menu ++");

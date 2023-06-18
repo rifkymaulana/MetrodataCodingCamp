@@ -6,7 +6,7 @@ namespace DatabaseConnectivity.Views;
 class JobView
 {
     private readonly Job _job = new Job();
-    void Main()
+    public void Menu()
     {
         Console.Clear();
         Console.WriteLine("++ Job Menu ++");
