@@ -1,4 +1,5 @@
 using DatabaseConnectivity.Models;
+using DatabaseConnectivity.Controllers;
 
 namespace DatabaseConnectivity.Views;
 
@@ -9,6 +10,7 @@ class RegionView
 
     public void Menu()
     {
+        RegionController regionController = new RegionController();
         Console.Clear();
         Console.WriteLine("++ Crud Region ++");
         Console.WriteLine("1. Create");
@@ -18,82 +20,45 @@ class RegionView
         Console.WriteLine("5. Delete");
         Console.WriteLine("9. Back");
         Console.Write("Please select menu: ");
-        try
-        {
-            int inputMenu = Convert.ToInt32(Console.ReadLine());
-            switch (inputMenu)
-            {
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-                case 9:
-                    break;
-                default:
-                    Console.WriteLine("Please, input 1, 2 3, 4 or 9");
-                    Console.Write("Click any key for continue...");
-                    Console.ReadKey();
-                    break;
-            }
-        }
-        catch (Exception)
-        {
-            Console.WriteLine("Please, input only number not alphabet");
-            Console.Write("Click any key for continue...");
-            Console.ReadKey();
-        }
+        regionController.Menu();
     }
 
 
-    void getAll()
+    public void GetAll(List<Region> regions)
     {
         Console.Clear();
         Console.WriteLine("++ Show All Region ++");
-        _region.GetAll().ForEach(e =>
+        regions.ForEach(e =>
         {
             Console.WriteLine($"Id = {e.Id}");
             Console.WriteLine($"Name = {e.Name}");
             Console.WriteLine();
         });
+        Message.ClickAnyKeyForContinue();
+        this.Menu();
     }
 
 
-    void GetById()
+    public void GetById()
     {
+        RegionController regionController = new RegionController();
         Console.Clear();
         Console.WriteLine("++ Show Region By Id ++");
         Console.Write("Input Id: ");
-        try
-        {
-            int id = Convert.ToInt32(Console.ReadLine());
-            this.GetById(id);
-            Console.Write("Click any key for continue...");
-            Console.ReadKey();
-        }
-        catch (Exception)
-        {
-            Console.WriteLine("Please, input only number not alphabet");
-            Console.Write("Click any key for continue...");
-            Console.ReadKey();
-        }
+        var region = regionController.GetById(regionController.GetById());
+        this.GetById(region);
     }
 
 
-    private void GetById(int id)
+    public void GetById(List<Region> region)
     {
-        Console.Clear();
-        Console.WriteLine("++ Show Region By Id ++");
-        _region.GetById(id).ForEach(e =>
+        region.ForEach(e =>
         {
             Console.WriteLine($"Id = {e.Id}");
             Console.WriteLine($"Name = {e.Name}");
             Console.WriteLine();
         });
+        Message.ClickAnyKeyForContinue();
+        this.Menu();
     }
 }
