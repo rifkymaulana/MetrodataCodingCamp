@@ -26,6 +26,7 @@ class RegionController
                 case 4:
                     break;
                 case 5:
+                    regionView.Delete();
                     break;
                 case 9:
                     break;
@@ -63,5 +64,20 @@ class RegionController
         Region region = new Region();
         return region.GetById(Id);
     }
+
+
+    public int Delete()
+    {
+        Region region = new Region();
+        try
+        {
+            return region.Delete(Convert.ToInt32(Console.ReadLine()));
+        }
+        catch (Exception)
+        {
+            return 0;
+        }
+    }
+
 
 }

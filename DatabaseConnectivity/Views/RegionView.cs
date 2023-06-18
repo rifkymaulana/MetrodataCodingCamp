@@ -61,4 +61,24 @@ class RegionView
         Message.ClickAnyKeyForContinue();
         this.Menu();
     }
+
+
+    public void Delete()
+    {
+        RegionController regionController = new RegionController();
+        Console.Clear();
+        Console.WriteLine("++ Delete Region By Id ++");
+        Console.Write("Input Id: ");
+        int result = regionController.Delete();
+        if (result > 0)
+        {
+            Message.DeleteSuccess();
+        }
+        else
+        {
+            Message.DeleteFailed();
+        }
+        Message.ClickAnyKeyForContinue();
+        this.Menu();
+    }
 }

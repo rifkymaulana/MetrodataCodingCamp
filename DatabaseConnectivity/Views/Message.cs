@@ -13,6 +13,8 @@ class Message
     private static readonly string MessageLoginFailed = "Login failed";
     private static readonly string MessageLogoutSuccess = "Logout success";
     private static readonly string MessageLogoutFailed = "Logout failed";
+    private static readonly string MessageDeleteSuccess = "Delete success";
+    private static readonly string MessageDeleteFailed = "Delete failed";
 
     public static void ClickAnyKeyForContinue()
     {
@@ -72,5 +74,17 @@ class Message
     public static void LogoutFailed()
     {
         Console.WriteLine(MessageLogoutFailed);
+    }
+
+
+    public static void DeleteSuccess()
+    {
+        Console.WriteLine(MessageDeleteSuccess);
+    }
+
+
+    public static void DeleteFailed()
+    {
+        Console.WriteLine(MessageDeleteFailed);
     }
 }
