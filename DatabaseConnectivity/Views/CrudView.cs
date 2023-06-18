@@ -3,9 +3,9 @@ using DatabaseConnectivity.Controllers;
 namespace DatabaseConnectivity.Views;
 
 
-class Crud
+class CrudView
 {
-    void Menu()
+    public void Menu()
     {
         Console.Clear();
         Console.WriteLine("++ Crud Menu ++");

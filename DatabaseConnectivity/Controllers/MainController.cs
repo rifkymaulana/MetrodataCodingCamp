@@ -7,15 +7,15 @@ class MainController
 {
     public void Menu()
     {
-        Main main = new Main();
-        AuthenticationView login = new AuthenticationView();
+        MainView main = new MainView();
+        AuthenticationView authenticationView = new AuthenticationView();
         try
         {
             int inputMenu = Convert.ToInt32(Console.ReadLine());
             switch (inputMenu)
             {
                 case 1:
-                    login.Menu();
+                    authenticationView.Login();
                     break;
                 case 2:
                     Message.FeatureUnderMaintenance();

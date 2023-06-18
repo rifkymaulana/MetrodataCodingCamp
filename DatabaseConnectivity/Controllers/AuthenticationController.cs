@@ -1,4 +1,5 @@
 ﻿using DatabaseConnectivity.Models;
+using DatabaseConnectivity.Views;
 
 namespace DatabaseConnectivity.Controllers;
 
@@ -6,31 +7,67 @@ namespace DatabaseConnectivity.Controllers;
 class AuthenticationController
 {
     protected static Employee _employee = new Employee();
-
     protected static List<Employee> employees = _employee.GetAll();
 
 
-    public bool Login(string Email, string Password)
+    public void Login(string Email, string Password)
     {
-        /*
-         * Account for login with email and password:
-         * Email = john.doe@example.com
-         * Password = 1AD
-         */
+        CrudView crudView = new CrudView();
+        MainView mainView = new MainView();
+        try
+        {
+            List<bool> auth = this.Authentication(Email, Password);
+
+            if (auth[0])
+            {
+                Message.LoginSuccess();
+                Message.ClickAnyKeyForContinue();
+                crudView.Menu();
+            }
+            else if (!(auth[0]) && auth[1])
+            {
+                Message.IncorrectPassword();
+                Message.ClickAnyKeyForContinue();
+                mainView.Menu();
+            }
+            else if (!(auth[0]) && !(auth[1]))
+            {
+                Message.AccountNotFound();
+                Message.ClickAnyKeyForContinue();
+                mainView.Menu();
+            }
+        }
+        catch (Exception)
+        {
+            Message.LoginFailed();
+            Message.ClickAnyKeyForContinue();
+            mainView.Menu();
+        }
+    }
+
+    private List<bool> Authentication(string Email, string Password)
+    {
+        List<bool> auth = new List<bool>();
         foreach (var employee in employees)
         {
             if (employee.Email == Email && ($"{employee.Id}{employee.JobId}" == Password))
             {
-                return true;
+                auth.Add(true);
+                break;
             }
-            else if (employee.Email == Email || ($"{employee.Id}{employee.JobId}" != Password))
+            else if (employee.Email == Email && ($"{employee.Id}{employee.JobId}" != Password))
             {
-                Console.WriteLine("Incorrect password");
-                return false;
+                auth.Add(false);
+                auth.Add(true);
+                break;
+            }
+            else
+            {
+                auth.Add(false);
+                auth.Add(false);
             }
         }
-
-        return true;
+        return auth;
     }
 
 
