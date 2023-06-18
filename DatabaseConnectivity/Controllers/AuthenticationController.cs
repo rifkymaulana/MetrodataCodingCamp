@@ -2,7 +2,7 @@
 
 namespace DatabaseConnectivity.Controllers;
 
-class Authentication
+class AuthenticationController
 {
     protected static Employee _employee = new Employee();
 

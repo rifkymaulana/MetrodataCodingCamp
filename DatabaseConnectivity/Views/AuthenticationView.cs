@@ -3,11 +3,11 @@ using DatabaseConnectivity.Controllers;
 
 namespace DatabaseConnectivity.Views;
 
-class Login
+class AuthenticationView
 {
-    void Menu()
+    public void Menu()
     {
-        Authentication authentication = new Authentication();
+        AuthenticationController authentication = new AuthenticationController();
         Console.Clear();
         Console.WriteLine("++ Login ++");
         Console.Write("Email: ");

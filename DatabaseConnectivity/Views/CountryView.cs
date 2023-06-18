@@ -39,7 +39,7 @@ class CountryView
                     Console.WriteLine("Please, input 1, 2 3, 4 or 9");
                     Console.Write("Click any key for continue...");
                     Console.ReadKey();
-                    this.CrudCountry();
+                    CrudCountry();
                     break;
             }
         }
@@ -48,7 +48,7 @@ class CountryView
             Console.WriteLine("Please, input only number not alphabet");
             Console.Write("Click any key for continue...");
             Console.ReadKey();
-            this.CrudCountry();
+            CrudCountry();
         }
     }
 
