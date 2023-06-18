@@ -15,6 +15,11 @@ class Message
     private static readonly string MessageLogoutFailed = "Logout failed";
     private static readonly string MessageDeleteSuccess = "Delete success";
     private static readonly string MessageDeleteFailed = "Delete failed";
+    private static readonly string MessageInsertSuccess = "Insert success";
+    private static readonly string MessageInsertFailed = "Insert failed";
+    private static readonly string MessageUpdateSuccess = "Update success";
+    private static readonly string MessageUpdateFailed = "Update failed";
+
 
     public static void ClickAnyKeyForContinue()
     {
@@ -86,5 +91,29 @@ class Message
     public static void DeleteFailed()
     {
         Console.WriteLine(MessageDeleteFailed);
+    }
+
+
+    public static void InsertSuccess()
+    {
+        Console.WriteLine(MessageInsertSuccess);
+    }
+
+
+    public static void InsertFailed()
+    {
+        Console.WriteLine(MessageInsertFailed);
+    }
+
+
+    public static void UpdateSuccess()
+    {
+        Console.WriteLine(MessageUpdateSuccess);
+    }
+
+
+    public static void UpdateFailed()
+    {
+        Console.WriteLine(MessageUpdateFailed);
     }
 }

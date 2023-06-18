@@ -24,6 +24,27 @@ class RegionView
     }
 
 
+    public void Create()
+    {
+        RegionController regionController = new RegionController();
+        Console.Clear();
+        Console.WriteLine("++ Create Region ++");
+        Console.Write("Input Name: ");
+        string Name = Console.ReadLine() ?? "";
+        int result = regionController.Create(Name);
+        if (result > 0)
+        {
+            Message.InsertSuccess();
+        }
+        else
+        {
+            Message.InsertFailed();
+        }
+        Message.ClickAnyKeyForContinue();
+        this.Menu();
+    }
+
+
     public void GetAll(List<Region> regions)
     {
         Console.Clear();
@@ -60,6 +81,16 @@ class RegionView
         });
         Message.ClickAnyKeyForContinue();
         this.Menu();
+    }
+
+
+    public void Update()
+    {
+        RegionController regionController = new RegionController();
+        Console.Clear();
+        Console.WriteLine("++ Update Region By Id ++");
+        Console.Write("Input Id: ");
+        regionController.Update();
     }
 
 

@@ -8,6 +8,7 @@ class RegionController
 {
     public void Menu()
     {
+        CrudView crudView = new CrudView();
         RegionView regionView = new RegionView();
         Region region = new Region();
         try
@@ -16,6 +17,7 @@ class RegionController
             switch (inputMenu)
             {
                 case 1:
+                    regionView.Create();
                     break;
                 case 2:
                     regionView.GetAll(region.GetAll());
@@ -24,11 +26,13 @@ class RegionController
                     regionView.GetById();
                     break;
                 case 4:
+                    regionView.Update();
                     break;
                 case 5:
                     regionView.Delete();
                     break;
                 case 9:
+                    crudView.Menu();
                     break;
                 default:
                     Message.InputOnlyMenu();
@@ -42,6 +46,20 @@ class RegionController
             Message.InputOnlyNumber();
             Message.ClickAnyKeyForContinue();
             regionView.Menu();
+        }
+    }
+
+
+    public int Create(string Name)
+    {
+        Region region = new Region();
+        try
+        {
+            return region.Insert(Name);
+        }
+        catch (Exception)
+        {
+            return 0;
         }
     }
 
@@ -63,6 +81,51 @@ class RegionController
     {
         Region region = new Region();
         return region.GetById(Id);
+    }
+
+
+    public void Update()
+    {
+        RegionView regionView = new RegionView();
+        try
+        {
+            int Id = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Input Name: ");
+            string Name = Console.ReadLine();
+            int result = this.Update(Id, Name);
+            if (result > 0)
+            {
+                Message.UpdateSuccess();
+                Message.ClickAnyKeyForContinue();
+                regionView.Menu();
+            }
+            else
+            {
+                Message.UpdateFailed();
+                Message.ClickAnyKeyForContinue();
+                regionView.Menu();
+            }
+        }
+        catch (Exception)
+        {
+            Message.InputOnlyNumber();
+            Message.ClickAnyKeyForContinue();
+            regionView.Menu();
+        }
+    }
+
+
+    public int Update(int Id, string Name)
+    {
+        Region region = new Region();
+        try
+        {
+            return region.Update(Id, Name);
+        }
+        catch (Exception)
+        {
+            return 0;
+        }
     }
 
 
