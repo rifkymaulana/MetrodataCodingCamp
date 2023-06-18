@@ -73,7 +73,4 @@ class Message
     {
         Console.WriteLine(MessageLogoutFailed);
     }
-
-
-
 }
