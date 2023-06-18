@@ -90,7 +90,19 @@ class RegionView
         Console.Clear();
         Console.WriteLine("++ Update Region By Id ++");
         Console.Write("Input Id: ");
-        regionController.Update();
+        try
+        {
+            int Id = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Input Name: ");
+            regionController.Update(Id);
+        }
+        catch (Exception)
+        {
+            Message.InputOnlyNumber();
+            Message.ClickAnyKeyForContinue();
+            this.Menu();
+        }
+
     }
 
 

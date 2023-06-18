@@ -84,13 +84,11 @@ class RegionController
     }
 
 
-    public void Update()
+    public void Update(int Id)
     {
         RegionView regionView = new RegionView();
         try
         {
-            int Id = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Input Name: ");
             string Name = Console.ReadLine();
             int result = this.Update(Id, Name);
             if (result > 0)
