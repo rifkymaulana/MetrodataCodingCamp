@@ -8,13 +8,14 @@ class LinqView
 {
     public void GetEmployees()
     {
+        CrudView crudView = new CrudView();
         Console.Clear();
         Console.WriteLine("++ Show Employees with limit ++");
         Console.Write("Limit: ");
         try
         {
-            int limit = Convert.ToInt32(Console.ReadLine());
             LinqController linq = new LinqController();
+            int limit = Convert.ToInt32(Console.ReadLine());
             List<EmployeeData> employeeDatas = linq.GetEmployees(limit);
             Console.WriteLine("++ Employees ++");
             foreach (var employeeData in employeeDatas)
@@ -30,14 +31,15 @@ class LinqView
                 Console.WriteLine($"Region Name: {employeeData.RegionName}");
                 Console.WriteLine();
             }
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey();
+            Message.ClickAnyKeyForContinue();
+            crudView.Menu();
         }
         catch (Exception)
         {
-            Console.WriteLine("Invalid input!");
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey();
+            Message.InputOnlyNumber();
+            Message.ClickAnyKeyForContinue();
+            crudView.Menu();
+
         }
     }
 

@@ -235,7 +235,7 @@ public class Location
             SqlParameter parameterCountryId = new SqlParameter();
             parameterCountryId.ParameterName = "@country_id";
             parameterCountryId.Value = CountryId;
-            parameterCountryId.SqlDbType = SqlDbType.VarChar;
+            parameterCountryId.SqlDbType = SqlDbType.Char;
 
             command.Parameters.Add(parameterId);
             command.Parameters.Add(parameterStreetAddress);
