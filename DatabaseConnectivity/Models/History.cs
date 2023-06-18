@@ -4,6 +4,7 @@ using DatabaseConnectivity.Contexts;
 
 namespace DatabaseConnectivity.Models;
 
+
 public class History
 {
     public DateTime StartDate { get; set; }

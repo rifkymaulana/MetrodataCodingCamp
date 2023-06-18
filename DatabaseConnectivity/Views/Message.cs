@@ -1,4 +1,6 @@
 namespace DatabaseConnectivity.Views;
+
+
 class Message
 {
     private static readonly string MessageClickAnyKey = "Click any key for continue...";

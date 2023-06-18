@@ -2,6 +2,7 @@ using DatabaseConnectivity.Controllers;
 
 namespace DatabaseConnectivity.Views;
 
+
 class Crud
 {
     void Menu()

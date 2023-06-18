@@ -2,6 +2,7 @@ using DatabaseConnectivity.Models;
 
 namespace DatabaseConnectivity.Views;
 
+
 class EmployeeView
 {
     private readonly Employee _employee = new Employee();

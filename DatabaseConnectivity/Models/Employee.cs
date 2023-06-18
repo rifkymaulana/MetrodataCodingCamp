@@ -4,6 +4,7 @@ using DatabaseConnectivity.Contexts;
 
 namespace DatabaseConnectivity.Models;
 
+
 public class Employee
 {
     public int Id { get; set; }

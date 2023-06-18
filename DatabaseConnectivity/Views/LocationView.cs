@@ -2,6 +2,7 @@ using DatabaseConnectivity.Models;
 
 namespace DatabaseConnectivity.Views;
 
+
 class LocationView
 {
     private readonly Location _location = new Location();

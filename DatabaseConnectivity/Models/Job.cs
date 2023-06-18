@@ -4,6 +4,7 @@ using DatabaseConnectivity.Contexts;
 
 namespace DatabaseConnectivity.Models;
 
+
 public class Job
 {
     public string Id { get; set; }

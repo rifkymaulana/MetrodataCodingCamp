@@ -4,6 +4,7 @@ using DatabaseConnectivity.Contexts;
 
 namespace DatabaseConnectivity.Models;
 
+
 public class Location
 {
     public int Id { get; set; }
@@ -262,8 +263,8 @@ public class Location
         conn.Close();
         return result;
     }
-    
-    
+
+
     public int Delete(int Id)
     {
         var conn = Connection.Conn;

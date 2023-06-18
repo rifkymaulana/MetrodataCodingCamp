@@ -2,6 +2,7 @@ using DatabaseConnectivity.Models;
 
 namespace DatabaseConnectivity.Views;
 
+
 class JobView
 {
     private readonly Job _job = new Job();

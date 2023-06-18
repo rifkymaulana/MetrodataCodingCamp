@@ -1,7 +1,7 @@
 ﻿using DatabaseConnectivity.Models;
 
-
 namespace DatabaseConnectivity.Controllers;
+
 
 public class LinqController
 {

@@ -2,6 +2,7 @@ using DatabaseConnectivity.Models;
 
 namespace DatabaseConnectivity.Views;
 
+
 class HistoryView
 {
     History _history = new History();

@@ -1,7 +1,8 @@
 using DatabaseConnectivity.Models;
 
-
 namespace DatabaseConnectivity.Views;
+
+
 class DepartmentView
 {
     private readonly Department _department = new Department();

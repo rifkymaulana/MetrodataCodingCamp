@@ -1,8 +1,8 @@
 ﻿using DatabaseConnectivity.Models;
 using DatabaseConnectivity.Controllers;
 
-
 namespace DatabaseConnectivity.Views;
+
 
 class Main
 {

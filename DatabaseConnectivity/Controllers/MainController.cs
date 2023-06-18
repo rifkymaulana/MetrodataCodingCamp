@@ -2,6 +2,7 @@ using DatabaseConnectivity.Views;
 
 namespace DatabaseConnectivity.Controllers;
 
+
 class MainController
 {
     public void Menu()
