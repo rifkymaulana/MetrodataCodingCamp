@@ -17,7 +17,14 @@ class LinqView
             LinqController linq = new LinqController();
             int limit = Convert.ToInt32(Console.ReadLine());
             List<EmployeeData> employeeDatas = linq.GetEmployees(limit);
+            bool IsEmpty = !employeeDatas.Any();
             Console.WriteLine("++ Employees ++");
+            if (IsEmpty)
+            {
+                Message.DataIsEmpty();
+                Message.ClickAnyKeyForContinue();
+                crudView.Menu();
+            }
             foreach (var employeeData in employeeDatas)
             {
                 Console.WriteLine($"Id: {employeeData.Id}");

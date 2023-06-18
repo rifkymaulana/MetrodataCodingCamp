@@ -19,6 +19,7 @@ class Message
     private static readonly string MessageInsertFailed = "Insert failed";
     private static readonly string MessageUpdateSuccess = "Update success";
     private static readonly string MessageUpdateFailed = "Update failed";
+    private static readonly string MessageDataIsEmpty = "Data is empty";
 
 
     public static void ClickAnyKeyForContinue()
@@ -115,5 +116,11 @@ class Message
     public static void UpdateFailed()
     {
         Console.WriteLine(MessageUpdateFailed);
+    }
+
+
+    public static void DataIsEmpty()
+    {
+        Console.WriteLine(MessageDataIsEmpty);
     }
 }
