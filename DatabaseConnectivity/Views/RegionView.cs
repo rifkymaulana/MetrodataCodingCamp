@@ -48,7 +48,7 @@ class RegionView
     public void GetAll(List<Region> regions)
     {
         Console.Clear();
-        Console.WriteLine("++ Show All Region ++");
+        Console.WriteLine("++ Show All Regions ++");
         regions.ForEach(e =>
         {
             Console.WriteLine($"Id = {e.Id}");

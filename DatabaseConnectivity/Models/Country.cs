@@ -176,7 +176,7 @@ public class Country
             SqlParameter parameterId = new SqlParameter();
             parameterId.ParameterName = "@id";
             parameterId.Value = Id;
-            parameterId.SqlDbType = SqlDbType.VarChar;
+            parameterId.SqlDbType = SqlDbType.Char;
 
             SqlParameter parameterName = new SqlParameter();
             parameterName.ParameterName = "@name";
@@ -212,7 +212,7 @@ public class Country
         return result;
     }
 
-    public int Delete(int Id)
+    public int Delete(string Id)
     {
         var conn = Connection.Conn;
         int result = 0;
@@ -229,7 +229,7 @@ public class Country
             SqlParameter parameterId = new SqlParameter();
             parameterId.ParameterName = "@id";
             parameterId.Value = Id;
-            parameterId.SqlDbType = SqlDbType.Int;
+            parameterId.SqlDbType = SqlDbType.Char;
 
             command.Parameters.Add(parameterId);
 

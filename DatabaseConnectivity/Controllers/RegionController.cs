@@ -139,6 +139,4 @@ class RegionController
             return 0;
         }
     }
-
-
 }
