@@ -15,7 +15,7 @@ public class Job
 
     public List<Job> GetAll()
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         List<Job> jobs = new List<Job>();
         try
         {
@@ -58,7 +58,7 @@ public class Job
 
     public List<Job> GetById(int Id)
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         List<Job> jobs = new List<Job>();
         try
         {
@@ -108,11 +108,11 @@ public class Job
 
     public int Insert(string Id, string Title, int? MinSalary, int? MaxSalary)
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         int result = 0;
         conn.Open();
 
-        SqlTransaction transaction = Connection.Conn.BeginTransaction();
+        SqlTransaction transaction = conn.BeginTransaction();
         try
         {
             SqlCommand command = new SqlCommand();
@@ -171,11 +171,11 @@ public class Job
 
     public int Update(string Id, string Title, int? MinSalary, int? MaxSalary)
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         int result = 0;
         conn.Open();
 
-        SqlTransaction transaction = Connection.Conn.BeginTransaction();
+        SqlTransaction transaction = conn.BeginTransaction();
         try
         {
             SqlCommand command = new SqlCommand();
@@ -234,7 +234,7 @@ public class Job
 
     public int Delete(int Id)
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         int result = 0;
         conn.Open();
 

@@ -1,3 +1,4 @@
+using DatabaseConnectivity.Controllers;
 using DatabaseConnectivity.Models;
 
 namespace DatabaseConnectivity.Views;
@@ -5,9 +6,9 @@ namespace DatabaseConnectivity.Views;
 
 class EmployeeView
 {
-    private readonly Employee _employee = new Employee();
     public void Menu()
     {
+        EmployeeController employeeController = new EmployeeController();
         Console.Clear();
         Console.WriteLine("++ Employee Menu ++");
         Console.WriteLine("1. Create");
@@ -17,44 +18,56 @@ class EmployeeView
         Console.WriteLine("5. Delete");
         Console.WriteLine("9. Back");
         Console.Write("Please select menu: ");
-        try
-        {
-            int inputMenu = Convert.ToInt32(Console.ReadLine());
-            switch (inputMenu)
-            {
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-                case 9:
-                    break;
-                default:
-                    Console.WriteLine("Please, input 1, 2 3, 4 or 9");
-                    Console.Write("Click any key for continue...");
-                    Console.ReadKey();
-                    break;
-            }
-        }
-        catch (Exception)
-        {
-            Console.WriteLine("Please, input only number not alphabet");
-            Console.Write("Click any key for continue...");
-            Console.ReadKey();
-        }
+        employeeController.Menu();
     }
 
 
-    void getAll()
+    public void Create()
+    {
+        EmployeeController employeeController = new EmployeeController();
+        Console.Clear();
+        Console.WriteLine("++ Create Employee ++");
+        Console.Write("Input Id: ");
+        int Id = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Input First Name: ");
+        string FirstName = Console.ReadLine() ?? "";
+        Console.Write("Input Last Name: ");
+        string LastName = Console.ReadLine() ?? "";
+        Console.Write("Input Email: ");
+        string Email = Console.ReadLine() ?? "";
+        Console.Write("Input Phone Number: ");
+        string PhoneNumber = Console.ReadLine() ?? "";
+        DateTime HireDate = DateTime.Now;
+        Console.Write("Input Salary: ");
+        int Salary = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Input Commission Pct: ");
+        decimal CommissionPct = Convert.ToDecimal(Console.ReadLine());
+        Console.Write("Input Manager Id: ");
+        int ManagerId = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Input Job Id: ");
+        string JobId = Console.ReadLine() ?? "";
+        Console.Write("Input Department Id: ");
+        int DepartmentId = Convert.ToInt32(Console.ReadLine());
+        int result = employeeController.Create(Id, FirstName, LastName, Email, PhoneNumber, HireDate, Salary,
+            CommissionPct, ManagerId, JobId, DepartmentId);
+        if (result > 0)
+        {
+            Message.InsertSuccess();
+        }
+        else
+        {
+            Message.InsertFailed();
+        }
+        Message.ClickAnyKeyForContinue();
+        this.Menu();
+    }
+
+
+    public void GetAll(List<Employee> employees)
     {
         Console.Clear();
         Console.WriteLine("++ Show All Region ++");
-        _employee.GetAll().ForEach(e =>
+        employees.ForEach(e =>
         {
             Console.WriteLine($"Id = {e.Id}");
             Console.WriteLine($"First Name = {e.FirstName}");
@@ -69,35 +82,28 @@ class EmployeeView
             Console.WriteLine($"Department Id = {e.DepartmentId}");
             Console.WriteLine();
         });
+        Message.ClickAnyKeyForContinue();
+        this.Menu();
     }
 
 
-    void GetById()
+    public void GetById()
     {
+        EmployeeController employeeController = new EmployeeController();
         Console.Clear();
         Console.WriteLine("++ Show Region By Id ++");
         Console.Write("Input Id: ");
-        try
-        {
-            int id = Convert.ToInt32(Console.ReadLine());
-            this.GetById(id);
-            Console.Write("Click any key for continue...");
-            Console.ReadKey();
-        }
-        catch (Exception)
-        {
-            Console.WriteLine("Please, input only number not alphabet");
-            Console.Write("Click any key for continue...");
-            Console.ReadKey();
-        }
+        var employees = employeeController.GetById(employeeController.GetById());
+        this.GetById(employees);
+        Message.ClickAnyKeyForContinue();
+        this.Menu();
     }
 
 
-    private void GetById(int id)
+    private void GetById(List<Employee> employees)
     {
-        Console.Clear();
         Console.WriteLine("++ Show Region By Id ++");
-        _employee.GetById(id).ForEach(e =>
+        employees.ForEach(e =>
         {
             Console.WriteLine($"Id = {e.Id}");
             Console.WriteLine($"First Name = {e.FirstName}");

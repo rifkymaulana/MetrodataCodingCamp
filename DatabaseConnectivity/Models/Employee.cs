@@ -22,7 +22,7 @@ public class Employee
 
     public List<Employee> GetAll()
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         List<Employee> employees = new List<Employee>();
         try
         {
@@ -73,7 +73,7 @@ public class Employee
 
     public List<Employee> GetById(int Id)
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         List<Employee> employees = new List<Employee>();
         try
         {
@@ -129,19 +129,20 @@ public class Employee
     }
 
 
-    public int Insert(int Id, string FirstName, string LastName, string Email, string Password, string PhoneNumber,
+    public int Insert(int Id, string FirstName, string LastName, string Email, string PhoneNumber,
         DateTime HireDate, int Salary, decimal CommissionPct, int ManagerId, string JobId, int DepartmentId)
     {
+        var conn = Connection.GetConnection();
         int result = 0;
-        Connection.Conn.Open();
+        conn.Open();
 
-        SqlTransaction transaction = Connection.Conn.BeginTransaction();
+        SqlTransaction transaction = conn.BeginTransaction();
         try
         {
             SqlCommand command = new SqlCommand();
-            command.Connection = Connection.Conn;
+            command.Connection = conn;
             command.CommandText =
-                "INSERT INTO tb_m_employees (id, first_name, last_name, email, password, phone_number, hire_date, salary, commission_pct, manager_id, job_id, department_id) VALUES (@id, @first_name, @last_name, @email, @password, @phone_number, @hire_date, @salary, @commission_pct, @manager_id, @job_id, @department_id)";
+                "INSERT INTO tb_m_employees (id, first_name, last_name, email, phone_number, hire_date, salary, comission_pct, manager_id, job_id, department_id) VALUES (@id, @first_name, @last_name, @email, @phone_number, @hire_date, @salary, @commission_pct, @manager_id, @job_id, @department_id)";
             command.Transaction = transaction;
 
             SqlParameter parameterId = new SqlParameter();
@@ -163,11 +164,6 @@ public class Employee
             parameterEmail.ParameterName = "@email";
             parameterEmail.Value = Email;
             parameterEmail.SqlDbType = SqlDbType.VarChar;
-
-            SqlParameter parameterPassword = new SqlParameter();
-            parameterPassword.ParameterName = "@password";
-            parameterPassword.Value = Password;
-            parameterPassword.SqlDbType = SqlDbType.VarChar;
 
             SqlParameter parameterPhoneNumber = new SqlParameter();
             parameterPhoneNumber.ParameterName = "@phone_number";
@@ -208,7 +204,6 @@ public class Employee
             command.Parameters.Add(parameterFirstName);
             command.Parameters.Add(parameterLastName);
             command.Parameters.Add(parameterEmail);
-            command.Parameters.Add(parameterPassword);
             command.Parameters.Add(parameterPhoneNumber);
             command.Parameters.Add(parameterHireDate);
             command.Parameters.Add(parameterSalary);
@@ -226,7 +221,7 @@ public class Employee
             transaction.Rollback();
         }
 
-        Connection.Conn.Close();
+        conn.Close();
         return result;
     }
 
@@ -234,14 +229,15 @@ public class Employee
     public int Update(int Id, string FirstName, string LastName, string Email, string Password, string PhoneNumber,
         DateTime HireDate, int Salary, decimal CommissionPct, int ManagerId, string JobId, int DepartmentId)
     {
+        var conn = Connection.GetConnection();
         int result = 0;
-        Connection.Conn.Open();
+        conn.Open();
 
-        SqlTransaction transaction = Connection.Conn.BeginTransaction();
+        SqlTransaction transaction = conn.BeginTransaction();
         try
         {
             SqlCommand command = new SqlCommand();
-            command.Connection = Connection.Conn;
+            command.Connection = conn;
             command.CommandText = "UPDATE tb_m_employees SET " +
                                   "first_name = @first_name," +
                                   "last_name = @last_name," +
@@ -346,21 +342,22 @@ public class Employee
             }
         }
 
-        Connection.Conn.Close();
+        conn.Close();
         return result;
     }
 
 
     public int Delete(int Id)
     {
+        var conn = Connection.GetConnection();
         int result = 0;
-        Connection.Conn.Open();
+        conn.Open();
 
-        SqlTransaction transaction = Connection.Conn.BeginTransaction();
+        SqlTransaction transaction = conn.BeginTransaction();
         try
         {
             SqlCommand command = new SqlCommand();
-            command.Connection = Connection.Conn;
+            command.Connection = conn;
             command.CommandText = "DELETE FROM tb_m_employees WHERE id = @id";
             command.Transaction = transaction;
 
@@ -387,7 +384,7 @@ public class Employee
             }
         }
 
-        Connection.Conn.Close();
+        conn.Close();
         return result;
     }
 }

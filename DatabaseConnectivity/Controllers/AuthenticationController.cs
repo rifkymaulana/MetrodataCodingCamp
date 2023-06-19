@@ -50,7 +50,7 @@ class AuthenticationController
         List<bool> auth = new List<bool>();
         foreach (var employee in employees)
         {
-            if (employee.Email == Email && ($"{employee.Id}{employee.JobId}" == Password))
+            if (employee.Email == Email && employee.Password == Password)
             {
                 auth.Add(true);
                 break;

@@ -12,7 +12,7 @@ public class Region
 
     public List<Region> GetAll()
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         List<Region> regions = new List<Region>();
         try
         {
@@ -53,7 +53,7 @@ public class Region
 
     public List<Region> GetById(int id)
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         List<Region> regions = new List<Region>();
         try
         {
@@ -101,14 +101,15 @@ public class Region
 
     public int Insert(string name)
     {
+        var conn = Connection.GetConnection();
         int result = 0;
-        Connection.Conn.Open();
+        conn.Open();
 
-        SqlTransaction transaction = Connection.Conn.BeginTransaction();
+        SqlTransaction transaction = conn.BeginTransaction();
         try
         {
             SqlCommand command = new SqlCommand();
-            command.Connection = Connection.Conn;
+            command.Connection = conn;
             command.CommandText = "INSERT INTO tb_m_regions (name) VALUES (@region_name)";
             command.Transaction = transaction;
 
@@ -135,21 +136,22 @@ public class Region
             }
         }
 
-        Connection.Conn.Close();
+        conn.Close();
         return result;
     }
 
 
     public int Update(int id, string name)
     {
+        var conn = Connection.GetConnection();
         int result = 0;
-        Connection.Conn.Open();
+        conn.Open();
 
-        SqlTransaction transaction = Connection.Conn.BeginTransaction();
+        SqlTransaction transaction = conn.BeginTransaction();
         try
         {
             SqlCommand command = new SqlCommand();
-            command.Connection = Connection.Conn;
+            command.Connection = conn;
             command.CommandText = "UPDATE tb_m_regions SET name = @name WHERE id = @id";
             command.Transaction = transaction;
 
@@ -183,14 +185,14 @@ public class Region
             }
         }
 
-        Connection.Conn.Close();
+        conn.Close();
         return result;
     }
 
 
     public int Delete(int id)
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         int result = 0;
         conn.Open();
 

@@ -17,7 +17,7 @@ public class Location
 
     public List<Location> GetAll()
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         List<Location> locations = new List<Location>();
         try
         {
@@ -62,7 +62,7 @@ public class Location
 
     public List<Location> GetById(int Id)
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         List<Location> locations = new List<Location>();
         try
         {
@@ -115,14 +115,15 @@ public class Location
     public int Insert(int Id, string StreetAddress, string PostalCode, string City, string StateProvince,
         string CountryId)
     {
+        var conn = Connection.GetConnection();
         int result = 0;
-        Connection.Conn.Open();
+        conn.Open();
 
-        SqlTransaction transaction = Connection.Conn.BeginTransaction();
+        SqlTransaction transaction = conn.BeginTransaction();
         try
         {
             SqlCommand command = new SqlCommand();
-            command.Connection = Connection.Conn;
+            command.Connection = conn;
             command.CommandText = "INSERT INTO tb_m_locations" +
                                   "(id, street_address, postal_code, city, state_province, country_id)" +
                                   "VALUES" +
@@ -182,7 +183,7 @@ public class Location
             }
         }
 
-        Connection.Conn.Close();
+        conn.Close();
         return result;
     }
 
@@ -190,11 +191,11 @@ public class Location
     public int Update(int id, string StreetAddress, string PostalCode, string City, string StateProvince,
         string CountryId)
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         int result = 0;
         conn.Open();
 
-        SqlTransaction transaction = Connection.Conn.BeginTransaction();
+        SqlTransaction transaction = conn.BeginTransaction();
         try
         {
             SqlCommand command = new SqlCommand();
@@ -267,7 +268,7 @@ public class Location
 
     public int Delete(int Id)
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         int result = 0;
         conn.Open();
 

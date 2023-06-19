@@ -14,7 +14,7 @@ public class Country
 
     public List<Country> GetAll()
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         List<Country> countries = new List<Country>();
         try
         {
@@ -55,7 +55,7 @@ public class Country
 
     public List<Country> GetById(string Id)
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         List<Country> countries = new List<Country>();
         try
         {
@@ -104,14 +104,15 @@ public class Country
 
     public int Insert(string Id, string Name, int RegionId)
     {
+        var conn = Connection.GetConnection();
         int result = 0;
-        Connection.Conn.Open();
+        conn.Open();
 
-        SqlTransaction transaction = Connection.Conn.BeginTransaction();
+        SqlTransaction transaction = conn.BeginTransaction();
         try
         {
             SqlCommand command = new SqlCommand();
-            command.Connection = Connection.Conn;
+            command.Connection = conn;
             command.CommandText = "INSERT INTO tb_m_countries (id, name, region_id) VALUES (@id, @name, @region_id)";
             command.Transaction = transaction;
 
@@ -150,14 +151,14 @@ public class Country
             }
         }
 
-        Connection.Conn.Close();
+        conn.Close();
         return result;
     }
 
 
     public int Update(string Id, string Name, int RegionId)
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         int result = 0;
         conn.Open();
 
@@ -214,7 +215,7 @@ public class Country
 
     public int Delete(string Id)
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         int result = 0;
         conn.Open();
 

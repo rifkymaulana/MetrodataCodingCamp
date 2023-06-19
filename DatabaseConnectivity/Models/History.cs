@@ -16,7 +16,7 @@ public class History
 
     public List<History> GetAll()
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         List<History> histories = new List<History>();
         try
         {
@@ -60,7 +60,7 @@ public class History
 
     public List<History> GetByEmployeeId(int EmployeeId)
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         List<History> histories = new List<History>();
         try
         {
@@ -112,14 +112,15 @@ public class History
 
     public int Insert(DateTime StartDate, int EmployeeId, DateTime? EndDate, int DepartmentId, string JobId)
     {
+        var conn = Connection.GetConnection();
         int result = 0;
-        Connection.Conn.Open();
+        conn.Open();
 
-        SqlTransaction transaction = Connection.Conn.BeginTransaction();
+        SqlTransaction transaction = conn.BeginTransaction();
         try
         {
             SqlCommand command = new SqlCommand();
-            command.Connection = Connection.Conn;
+            command.Connection = conn;
             command.CommandText = "INSERT INTO tb_m_histories" +
                                   "(start_date, employee_id, end_date, department_id, job_id)" +
                                   "VALUES" +
@@ -173,18 +174,18 @@ public class History
             }
         }
 
-        Connection.Conn.Close();
+        conn.Close();
         return result;
     }
 
 
     public int Update(DateTime StartDate, int EmployeeId, DateTime? EndDate, int DepartmentId, string JobId)
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         int result = 0;
         conn.Open();
 
-        SqlTransaction transaction = Connection.Conn.BeginTransaction();
+        SqlTransaction transaction = conn.BeginTransaction();
         try
         {
             SqlCommand command = new SqlCommand();
@@ -251,7 +252,7 @@ public class History
 
     public int Delete(DateTime StartDate, int EmployeeId)
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         int result = 0;
         conn.Open();
 

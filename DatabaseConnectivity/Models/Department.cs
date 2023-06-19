@@ -15,7 +15,7 @@ public class Department
 
     public List<Department> GetAll()
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         List<Department> departments = new List<Department>();
         try
         {
@@ -58,7 +58,7 @@ public class Department
 
     public List<Department> GetById(int Id)
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         List<Department> departments = new List<Department>();
         try
         {
@@ -108,14 +108,15 @@ public class Department
 
     public int Insert(int Id, string Name, int LocationId, int ManagerId)
     {
+        var conn = Connection.GetConnection();
         int result = 0;
-        Connection.Conn.Open();
+        conn.Open();
 
-        SqlTransaction transaction = Connection.Conn.BeginTransaction();
+        SqlTransaction transaction = conn.BeginTransaction();
         try
         {
             SqlCommand command = new SqlCommand();
-            command.Connection = Connection.Conn;
+            command.Connection = conn;
             command.CommandText =
                 "INSERT INTO tb_m_departments (id, name, location_id, manager_id) VALUES (@id, @name, @location_id, @manager_id)";
             command.Transaction = transaction;
@@ -161,14 +162,14 @@ public class Department
             }
         }
 
-        Connection.Conn.Close();
+        conn.Close();
         return result;
     }
 
 
     public int Update(int Id, string Name, int LocationId, int ManagerId)
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         int result = 0;
         conn.Open();
 
@@ -229,7 +230,7 @@ public class Department
 
     public int Delete(int Id)
     {
-        var conn = Connection.Conn;
+        var conn = Connection.GetConnection();
         int result = 0;
         conn.Open();
 
