@@ -53,6 +53,7 @@ class LinqView
 
     public void GetDepartments()
     {
+        CrudView crudView = new CrudView();
         Console.Clear();
         Console.WriteLine("++ Show Departments that have more than 3 employees ++");
         LinqController linq = new LinqController();
@@ -67,7 +68,7 @@ class LinqView
             Console.WriteLine($"Avg Salary: {departmentData.AverageSalary}");
             Console.WriteLine();
         }
-        Console.WriteLine("Press any key to continue...");
-        Console.ReadKey();
+        Message.ClickAnyKeyForContinue();
+        crudView.Menu();
     }
 }

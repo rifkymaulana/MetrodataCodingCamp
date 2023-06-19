@@ -1,3 +1,4 @@
+using DatabaseConnectivity.Controllers;
 using DatabaseConnectivity.Models;
 
 namespace DatabaseConnectivity.Views;
@@ -5,10 +6,9 @@ namespace DatabaseConnectivity.Views;
 
 class DepartmentView
 {
-    private readonly Department _department = new Department();
-
     public void Menu()
     {
+        DepartmentController departmentController = new DepartmentController();
         Console.Clear();
         Console.WriteLine("++ Crud Department ++");
         Console.WriteLine("1. Create");
@@ -18,87 +18,122 @@ class DepartmentView
         Console.WriteLine("5. Delete");
         Console.WriteLine("9. Back");
         Console.Write("Please select menu: ");
-        try
-        {
-            int inputMenu = Convert.ToInt32(Console.ReadLine());
-            switch (inputMenu)
-            {
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-                case 9:
-                    break;
-                default:
-                    Console.WriteLine("Please, input 1, 2 3, 4 or 9");
-                    Console.Write("Click any key for continue...");
-                    Console.ReadKey();
-                    this.Menu();
-                    break;
-            }
-        }
-        catch (Exception)
-        {
-            Console.WriteLine("Please, input only number not alphabet");
-            Console.Write("Click any key for continue...");
-            Console.ReadKey();
-            this.Menu();
-        }
+        departmentController.Menu();
     }
 
 
-    void GetAll()
+    public void Create()
+    {
+        DepartmentController departmentController = new DepartmentController();
+        Console.Clear();
+        Console.WriteLine("++ Create Department ++");
+        Console.Write("Input Id: ");
+        int Id = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Input Name: ");
+        string Name = Console.ReadLine() ?? "";
+        Console.Write("Input Location Id: ");
+        int LocationId = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Input Manager Id: ");
+        int ManagerId = Convert.ToInt32(Console.ReadLine());
+        int result = departmentController.Create(Id, Name, LocationId, ManagerId);
+        if (result > 0)
+        {
+            Message.InsertSuccess();
+        }
+        else
+        {
+            Message.InsertFailed();
+        }
+        Message.ClickAnyKeyForContinue();
+        this.Menu();
+    }
+
+
+    public void GetAll(List<Department> departments)
     {
         Console.Clear();
-        Console.WriteLine("++ Show All Department ++");
-        _department.GetAll().ForEach(e =>
+        Console.WriteLine("++ Show All Departments ++");
+        departments.ForEach(e =>
         {
             Console.WriteLine($"Id = {e.Id}");
             Console.WriteLine($"Name = {e.Name}");
             Console.WriteLine($"LocationId = {e.LocationId}");
             Console.WriteLine($"ManagerId = {e.ManagerId}");
+            Console.WriteLine();
         });
-        Console.Write("Click any key for continue...");
-        Console.ReadKey();
+        Message.ClickAnyKeyForContinue();
         this.Menu();
     }
 
 
-    void GetById(int Id)
+    public void GetById()
     {
+        DepartmentController departmentController = new DepartmentController();
         Console.Clear();
-        Console.WriteLine("++ Show Region By Id ++");
-        _department.GetById(Id).ForEach(e =>
+        Console.WriteLine("++ Show Department By Id ++");
+        Console.Write("Input Id: ");
+        var department = departmentController.GetById(departmentController.GetById());
+        this.GetById(department);
+        Message.ClickAnyKeyForContinue();
+        this.Menu();
+    }
+
+
+    public void GetById(List<Department> department)
+    {
+        department.ForEach(e =>
         {
             Console.WriteLine($"Id = {e.Id}");
             Console.WriteLine($"Name = {e.Name}");
+            Console.WriteLine($"LocationId = {e.LocationId}");
+            Console.WriteLine($"ManagerId = {e.ManagerId}");
             Console.WriteLine();
         });
     }
 
-    void GetById()
+
+    public void Update()
     {
+        DepartmentController departmentController = new DepartmentController();
         Console.Clear();
-        Console.WriteLine("++ Show Country By Id ++");
-        Console.Write("Input Id: ");
+        Console.WriteLine("++ Update Department By Id ++");
         try
         {
+            Console.Write("Input Id: ");
             int Id = Convert.ToInt32(Console.ReadLine());
-            this.GetById(Id);
-            Console.Write("Click any key for continue...");
-            Console.ReadKey();
+            Console.Write("Input Name: ");
+            string Name = Console.ReadLine() ?? "";
+            Console.Write("Input Location Id: ");
+            int LocationId = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Input Manager Id: ");
+            int ManagerId = Convert.ToInt32(Console.ReadLine());
+            departmentController.Update(Id, Name, LocationId, ManagerId, true);
         }
         catch (Exception)
         {
-            Console.WriteLine("Please, input only number not alphabet");
-            Console.Write("Click any key for continue...");
-            Console.ReadKey();
+            Message.InputOnlyNumber();
+            Message.ClickAnyKeyForContinue();
+            this.Menu();
         }
+    }
+
+
+    public void Delete()
+    {
+        DepartmentController departmentController = new DepartmentController();
+        Console.Clear();
+        Console.WriteLine("++ Delete Department By Id ++");
+        Console.Write("Input Id: ");
+        int result = departmentController.Delete();
+        if (result > 0)
+        {
+            Message.DeleteSuccess();
+        }
+        else
+        {
+            Message.DeleteFailed();
+        }
+        Message.ClickAnyKeyForContinue();
+        this.Menu();
     }
 }

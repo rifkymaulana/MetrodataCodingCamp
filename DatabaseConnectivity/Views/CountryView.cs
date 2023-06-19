@@ -6,8 +6,6 @@ namespace DatabaseConnectivity.Views;
 
 class CountryView
 {
-    private readonly Country _country = new Country();
-
     public void Menu()
     {
         CountryController countryController = new CountryController();
